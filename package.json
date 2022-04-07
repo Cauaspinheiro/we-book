@@ -10,11 +10,22 @@
     "build": "turbo run build",
     "dev": "turbo run dev --parallel",
     "lint": "turbo run lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    "ct": "lint-staged -v && git-cz --no-verify"
   },
   "devDependencies": {
-    "prettier": "^2.5.1",
-    "turbo": "latest"
+    "turbo": "latest",
+    "@commitlint/cli": "^16.1.0",
+    "@commitlint/config-conventional": "^16.0.0",
+    "@commitlint/cz-commitlint": "^16.1.0",
+    "commitizen": "^4.2.4",
+    "lint-staged": "^12.3.2",
+    "prettier": "^2.5.1"
+  },
+  "lint-staged": {
+    "**/*.ts?(x)": [
+      "eslint --cache --fix",
+      "prettier --write"
+    ]
   },
   "engines": {
     "npm": ">=7.0.0",
