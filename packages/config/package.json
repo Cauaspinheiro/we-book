@@ -1,14 +1,16 @@
 {
   "name": "config",
   "version": "0.0.0",
-  "main": "index.js",
   "license": "MIT",
   "files": [
-    "eslint-preset.js"
+    ".eslintrc.json"
   ],
   "dependencies": {
-    "eslint-config-next": "^12.0.8",
+    "@typescript-eslint/eslint-plugin": "^5.0.0",
+    "@typescript-eslint/parser": "^5.0.0",
+    "eslint": "^8.0.1",
     "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-react": "7.28.0"
+    "eslint-plugin-prettier": "^4.0.0",
+    "typescript": "^4.3.5"
   }
 }
