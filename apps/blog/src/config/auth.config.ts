@@ -13,6 +13,13 @@ export const appInfo = {
 export const frontendConfig = () => {
   return {
     appInfo,
-    recipeList: [EmailPasswordReact.init(), SessionReact.init()],
+    recipeList: [
+      EmailPasswordReact.init({
+        emailVerificationFeature: {
+          mode: 'REQUIRED',
+        },
+      }),
+      SessionReact.init(),
+    ],
   }
 }
