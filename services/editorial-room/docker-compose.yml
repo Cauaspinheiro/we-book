@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:14.2-alpine
+    environment:
+      POSTGRES_DB: editorial_room__db
+      POSTGRES_USER: editorial_room__user
+      POSTGRES_PASSWORD: editorial_room__password
+    ports:
+      - 25132:5432

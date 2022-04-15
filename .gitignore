@@ -42,3 +42,6 @@ dist
 # env
 .env
 .env.local
+
+# Prisma
+**/prisma/generated

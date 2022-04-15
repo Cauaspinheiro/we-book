@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  rabbitmq:
+    image: rabbitmq:3.9-management
+    hostname: rabbitmq
+    ports:
+      - 2572:5672
+      - 25672:15672
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq/
+      - rabbitmq_log:/var/log/rabbitmq/
+    networks:
+      - blog-network
+networks:
+  blog-network:
+    driver: bridge
+volumes:
+  blog-data:
+  rabbitmq_data:
+  rabbitmq_log:

@@ -16,7 +16,7 @@ export const frontendConfig = () => {
     recipeList: [
       EmailPasswordReact.init({
         emailVerificationFeature: {
-          mode: 'REQUIRED',
+          mode: process.env.NODE_ENV === 'production' ? 'REQUIRED' : 'OFF',
         },
       }),
       SessionReact.init(),

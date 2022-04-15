@@ -4,6 +4,7 @@ import {
   NestModule,
   DynamicModule,
 } from '@nestjs/common'
+import { AuthRMQGateway } from './auth-rmq.gateway'
 
 import { ConfigInjectionToken, AuthModuleConfig } from './auth.config'
 import { AuthMiddleware } from './auth.middleware'
@@ -35,6 +36,7 @@ export class AuthModule implements NestModule {
           provide: ConfigInjectionToken,
         },
         SupertokensService,
+        AuthRMQGateway,
       ],
       exports: [],
       imports: [],
