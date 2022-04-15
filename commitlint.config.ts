@@ -31,7 +31,11 @@ const config: UserConfig = {
         'wip',
       ],
     ],
-    'scope-enum': [2, 'always', ['apps/blog', 'services/auth', 'packages']],
+    'scope-enum': [
+      2,
+      'always',
+      ['apps/blog', 'services/auth', 'services/editorial-room', 'packages'],
+    ],
   },
   prompt: {
     questions: {
