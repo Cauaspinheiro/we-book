@@ -9,3 +9,17 @@ services:
       POSTGRES_PASSWORD: auth__password
     ports:
       - 25032:5432
+    networks:
+      - auth_network
+  supertokens:
+    image: registry.supertokens.io/supertokens/supertokens-postgresql
+    ports:
+        - "25067:3567"
+    depends_on:
+        - "postgres"
+    environment:
+        POSTGRESQL_CONNECTION_URI: postgres://auth__user:auth__password@postgres/auth__db
+    networks:
+      - auth_network
+networks:
+  auth_network:

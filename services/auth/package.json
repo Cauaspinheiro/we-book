@@ -1,12 +1,12 @@
 {
-  "name": "api",
+  "name": "auth",
   "version": "0.0.1",
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
-    "dev": "nest start --watch",
+    "dev": "env-cmd -f .env nest start --watch",
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix"
@@ -26,6 +26,7 @@
     "@types/express": "^4.17.13",
     "@types/node": "^16.0.0",
     "config": "*",
+    "env-cmd": "^10.1.0",
     "source-map-support": "^0.5.20",
     "ts-loader": "^9.2.3",
     "ts-node": "^10.0.0",
