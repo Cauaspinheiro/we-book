@@ -1,14 +1,12 @@
 import { Controller, Get, Req, UseGuards } from '@nestjs/common'
-import { SessionGuard } from './infra/session.guard'
-import { GetWriter } from './use-cases/get-writer'
+import { RequestWithWriter } from 'src/@types/request'
+import { WriterGuard } from './infra/guards/writer.guard'
 
 @Controller()
 export class WritersController {
-  constructor(private getWriter: GetWriter) {}
-
-  @UseGuards(SessionGuard)
+  @UseGuards(WriterGuard)
   @Get('writers/me')
-  async getWriterEndpoint(@Req() req: Request & { id: string }) {
-    return await this.getWriter.run(req.id)
+  async getWriterEndpoint(@Req() req: RequestWithWriter) {
+    return req.writer
   }
 }

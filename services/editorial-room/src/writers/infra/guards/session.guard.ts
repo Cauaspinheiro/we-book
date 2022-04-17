@@ -4,7 +4,7 @@ import {
   Injectable,
   UnauthorizedException,
 } from '@nestjs/common'
-import { ValidateSession } from '../use-cases/validate-session'
+import { ValidateSession } from '../../use-cases/validate-session'
 
 @Injectable()
 export class SessionGuard implements CanActivate {
@@ -24,6 +24,6 @@ export class SessionGuard implements CanActivate {
 
     req.id = id
 
-    return true
+    return id
   }
 }
