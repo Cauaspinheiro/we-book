@@ -16,6 +16,6 @@ import { WritersEvents } from './writers.events'
     GetWriter,
     SessionGuard,
   ],
-  exports: [ValidateSession],
+  exports: [ValidateSession, GetWriter, SessionGuard],
 })
 export class WritersModule {}
