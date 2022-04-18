@@ -43,4 +43,10 @@ export class DraftsRepository {
   private readonly INCLUDE_WRITERS_TO_DRAFT = {
     writers: { select: { writer: true, isCreator: true } },
   }
+
+  async delete(id: string) {
+    const result = await this.repo.draft.delete({ where: { id } })
+
+    return result
+  }
 }

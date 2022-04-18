@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   Param,
   Post,
@@ -14,6 +15,7 @@ import { UpdateDraftDTO } from './domain/update-draft.dto'
 import { CreateDraftValidator } from './infra/validation/create-draft.validator'
 import { AddWriterToDraft } from './use-cases/add-writer-to-draft'
 import { CreateDraft } from './use-cases/create-draft'
+import { DeleteDraft } from './use-cases/delete-draft'
 import { GetDrafts } from './use-cases/get-drafts'
 import { RemoveWriterFromDraft } from './use-cases/remove-writer-from-draft'
 import { UpdateDraft } from './use-cases/update-draft'
@@ -27,6 +29,7 @@ export class DraftsController {
     private getDrafts: GetDrafts,
     private removeWriterFromDraft: RemoveWriterFromDraft,
     private updateDraft: UpdateDraft,
+    private deleteDraft: DeleteDraft,
   ) {}
 
   @Post()
@@ -73,5 +76,10 @@ export class DraftsController {
     @Body() data: UpdateDraftDTO,
   ) {
     return await this.updateDraft.run(writer, id, data)
+  }
+
+  @Delete('/:id')
+  async delete(@UseWriter() writer: Writer, @Param('id') id: string) {
+    return await this.deleteDraft.run(writer, id)
   }
 }

@@ -4,6 +4,7 @@ import { DraftsController } from './drafts.controller'
 import { DraftsRepository } from './infra/drafts.repository'
 import { AddWriterToDraft } from './use-cases/add-writer-to-draft'
 import { CreateDraft } from './use-cases/create-draft'
+import { DeleteDraft } from './use-cases/delete-draft'
 import { GetDrafts } from './use-cases/get-drafts'
 import { RemoveWriterFromDraft } from './use-cases/remove-writer-from-draft'
 import { UpdateDraft } from './use-cases/update-draft'
@@ -16,6 +17,7 @@ import { UpdateDraft } from './use-cases/update-draft'
     GetDrafts,
     RemoveWriterFromDraft,
     UpdateDraft,
+    DeleteDraft,
   ],
   imports: [WritersModule],
   controllers: [DraftsController],
