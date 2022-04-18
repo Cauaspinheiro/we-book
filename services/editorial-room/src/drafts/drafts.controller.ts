@@ -10,11 +10,13 @@ import {
 import { Writer } from 'prisma/generated'
 import { UseWriter } from 'src/writers/infra/decorators/writer.decorator'
 import { WriterGuard } from 'src/writers/infra/guards/writer.guard'
+import { UpdateDraftDTO } from './domain/update-draft.dto'
 import { CreateDraftValidator } from './infra/validation/create-draft.validator'
 import { AddWriterToDraft } from './use-cases/add-writer-to-draft'
 import { CreateDraft } from './use-cases/create-draft'
 import { GetDrafts } from './use-cases/get-drafts'
 import { RemoveWriterFromDraft } from './use-cases/remove-writer-from-draft'
+import { UpdateDraft } from './use-cases/update-draft'
 
 @Controller('drafts')
 @UseGuards(WriterGuard)
@@ -24,6 +26,7 @@ export class DraftsController {
     private addWriterToDraft: AddWriterToDraft,
     private getDrafts: GetDrafts,
     private removeWriterFromDraft: RemoveWriterFromDraft,
+    private updateDraft: UpdateDraft,
   ) {}
 
   @Post()
@@ -61,5 +64,14 @@ export class DraftsController {
   @Get()
   async index(@UseWriter() writer: Writer) {
     return await this.getDrafts.run(writer)
+  }
+
+  @Put('/:id')
+  async update(
+    @UseWriter() writer: Writer,
+    @Param('id') id: string,
+    @Body() data: UpdateDraftDTO,
+  ) {
+    return await this.updateDraft.run(writer, id, data)
   }
 }

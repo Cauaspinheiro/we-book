@@ -6,6 +6,7 @@ import { AddWriterToDraft } from './use-cases/add-writer-to-draft'
 import { CreateDraft } from './use-cases/create-draft'
 import { GetDrafts } from './use-cases/get-drafts'
 import { RemoveWriterFromDraft } from './use-cases/remove-writer-from-draft'
+import { UpdateDraft } from './use-cases/update-draft'
 
 @Module({
   providers: [
@@ -14,6 +15,7 @@ import { RemoveWriterFromDraft } from './use-cases/remove-writer-from-draft'
     AddWriterToDraft,
     GetDrafts,
     RemoveWriterFromDraft,
+    UpdateDraft,
   ],
   imports: [WritersModule],
   controllers: [DraftsController],
