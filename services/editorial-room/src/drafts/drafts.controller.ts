@@ -1,19 +1,29 @@
-import { Body, Controller, Get, Param, Post, UseGuards } from '@nestjs/common'
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  Post,
+  Put,
+  UseGuards,
+} from '@nestjs/common'
 import { Writer } from 'prisma/generated'
 import { UseWriter } from 'src/writers/infra/decorators/writer.decorator'
 import { WriterGuard } from 'src/writers/infra/guards/writer.guard'
 import { CreateDraftValidator } from './infra/validation/create-draft.validator'
-import { AddPublisherToDraft } from './use-cases/add-writers-to-draft'
+import { AddWriterToDraft } from './use-cases/add-writer-to-draft'
 import { CreateDraft } from './use-cases/create-draft'
 import { GetDrafts } from './use-cases/get-drafts'
+import { RemoveWriterFromDraft } from './use-cases/remove-writer-from-draft'
 
 @Controller('drafts')
 @UseGuards(WriterGuard)
 export class DraftsController {
   constructor(
     private createDraft: CreateDraft,
-    private addPublisherToDraft: AddPublisherToDraft,
+    private addWriterToDraft: AddWriterToDraft,
     private getDrafts: GetDrafts,
+    private removeWriterFromDraft: RemoveWriterFromDraft,
   ) {}
 
   @Post()
@@ -25,13 +35,25 @@ export class DraftsController {
   }
 
   @Post('/:draftId/writers/add/:writerId')
-  async addWriterToDraft(
+  async addWriter(
     @UseWriter() writer: Writer,
     @Param('draftId') draftId: string,
     @Param('writerId') writerId: string,
   ) {
-    return await this.addPublisherToDraft.run(writer, {
+    return await this.addWriterToDraft.run(writer, {
       addedWriterId: writerId,
+      draftId,
+    })
+  }
+
+  @Put('/:draftId/writers/remove/:writerId')
+  async removeWriter(
+    @UseWriter() writer: Writer,
+    @Param('draftId') draftId: string,
+    @Param('writerId') writerId: string,
+  ) {
+    return await this.removeWriterFromDraft.run(writer, {
+      removedWriterId: writerId,
       draftId,
     })
   }

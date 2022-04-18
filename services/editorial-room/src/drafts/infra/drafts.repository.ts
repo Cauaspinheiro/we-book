@@ -41,6 +41,6 @@ export class DraftsRepository {
   }
 
   private readonly INCLUDE_WRITERS_TO_DRAFT = {
-    writers: { select: { writer: true } },
+    writers: { select: { writer: true, isCreator: true } },
   }
 }

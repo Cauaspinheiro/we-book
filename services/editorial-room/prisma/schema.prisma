@@ -40,6 +40,8 @@ model Draft {
 model WriterDraft {
   id String @id @default(uuid())
 
+  isCreator Boolean @default(false)
+
   draftId  String
   writerId String
 

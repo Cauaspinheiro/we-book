@@ -13,7 +13,10 @@ export class GetDrafts {
 
     return drafts.map((draft) => ({
       ...draft,
-      writers: draft.writers.map(({ writer }) => writer),
+      writers: draft.writers.map(({ writer, isCreator }) => ({
+        ...writer,
+        isCreator,
+      })),
     }))
   }
 }

@@ -11,7 +11,9 @@ export class CreateDraft {
   async run(createDraftDTO: CreateDraftDTO, writer: Writer) {
     const result = await this.draftsRepository.create({
       content: createDraftDTO.content,
-      writers: { create: { writer: { connect: { id: writer.id } } } },
+      writers: {
+        create: { writer: { connect: { id: writer.id } }, isCreator: true },
+      },
     })
 
     return result

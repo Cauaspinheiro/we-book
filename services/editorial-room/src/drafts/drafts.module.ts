@@ -2,12 +2,19 @@ import { Module } from '@nestjs/common'
 import { WritersModule } from 'src/writers/writers.module'
 import { DraftsController } from './drafts.controller'
 import { DraftsRepository } from './infra/drafts.repository'
-import { AddPublisherToDraft } from './use-cases/add-writers-to-draft'
+import { AddWriterToDraft } from './use-cases/add-writer-to-draft'
 import { CreateDraft } from './use-cases/create-draft'
 import { GetDrafts } from './use-cases/get-drafts'
+import { RemoveWriterFromDraft } from './use-cases/remove-writer-from-draft'
 
 @Module({
-  providers: [DraftsRepository, CreateDraft, AddPublisherToDraft, GetDrafts],
+  providers: [
+    DraftsRepository,
+    CreateDraft,
+    AddWriterToDraft,
+    GetDrafts,
+    RemoveWriterFromDraft,
+  ],
   imports: [WritersModule],
   controllers: [DraftsController],
 })
