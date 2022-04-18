@@ -34,7 +34,13 @@ const config: UserConfig = {
     'scope-enum': [
       2,
       'always',
-      ['apps/blog', 'services/auth', 'services/editorial-room', 'packages'],
+      [
+        'apps/blog',
+        'services/auth',
+        'services/editorial-room',
+        'services/blog',
+        'packages',
+      ],
     ],
   },
   prompt: {
