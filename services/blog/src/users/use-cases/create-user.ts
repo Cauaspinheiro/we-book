@@ -1,13 +1,13 @@
 import { Injectable } from '@nestjs/common'
 
+import { NewUserDTO } from '../domain/new-user.dto'
 import { UsersRepository } from '../infra/users.repository'
-import { NewUserPayload } from '../interfaces/rmq.payloads'
 
 @Injectable()
 export class CreateUser {
   constructor(private usersRepository: UsersRepository) {}
 
-  async run(data: NewUserPayload) {
+  async run(data: NewUserDTO) {
     await this.usersRepository.create({
       createdAt: new Date(data.timeJoined),
       email: data.email,
