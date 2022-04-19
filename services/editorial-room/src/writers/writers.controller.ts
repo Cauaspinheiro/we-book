@@ -2,10 +2,10 @@ import { Controller, Get, Req, UseGuards } from '@nestjs/common'
 import { RequestWithWriter } from 'src/@types/request'
 import { WriterGuard } from './infra/guards/writer.guard'
 
-@Controller()
+@Controller('writers')
 export class WritersController {
   @UseGuards(WriterGuard)
-  @Get('writers/me')
+  @Get('me')
   async getWriterEndpoint(@Req() req: RequestWithWriter) {
     return req.writer
   }

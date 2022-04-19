@@ -31,6 +31,6 @@ export class ValidateSession {
   }
 
   private get VALIDATE_SESSION_PATH() {
-    return `${process.env.AUTH_SERVICE_BASE_URL}/secret/${process.env.AUTH_SERVICE_API_SECRET}/validate-session`
+    return `${process.env.API_BASE_URL}/auth/secret/${process.env.AUTH_SERVICE_API_SECRET}/validate-session`
   }
 }

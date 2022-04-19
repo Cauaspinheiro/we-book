@@ -2,7 +2,7 @@ import { Controller, Get, Param, Req, Res } from '@nestjs/common'
 import { Request, Response } from 'express'
 import { ValidateSessionByApiSecret } from './use-cases/validate-session-by-api-secret'
 
-@Controller()
+@Controller('auth')
 export class AuthController {
   constructor(private validateSessionByApiSecret: ValidateSessionByApiSecret) {}
 

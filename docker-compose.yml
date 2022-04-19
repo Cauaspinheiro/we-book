@@ -10,11 +10,14 @@ services:
     volumes:
       - rabbitmq_data:/var/lib/rabbitmq/
       - rabbitmq_log:/var/log/rabbitmq/
-    networks:
-      - blog-network
-networks:
-  blog-network:
-    driver: bridge
+  server:
+    image: nginx
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/api_conf.d:/etc/nginx/api_conf.d
+      - ./nginx/api_backends.conf:/etc/nginx/api_backends.conf
+      - ./nginx/api_gateway.conf:/etc/nginx/api_gateway.conf
+    network_mode: host
 volumes:
   blog-data:
   rabbitmq_data:

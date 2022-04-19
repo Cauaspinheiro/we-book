@@ -4,7 +4,7 @@ declare global {
       DATABASE_URL: string
 
       AUTH_SERVICE_API_SECRET: string
-      AUTH_SERVICE_BASE_URL: string
+      API_BASE_URL: string
     }
   }
 }
