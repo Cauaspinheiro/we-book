@@ -1,42 +1,12 @@
-## Auth service
+- [ ] Frontend
+- [ ] Customizar toda a UI do supertokens (páginas de auth e emails)
+- [ ] Upsert em blog quando published draft
+  - Verificar se esse draft já foi publicado, se sim, update, se não, insert
+- [ ] Algumas configurações ainda estão hard coded, deixar tudo como env
 
-Autenticação de usuários
+## Melhorias (opcionais)
 
-### Terminar configuração
-
-- Terminar as configurações do supertokens [deste link](https://supertokens.com/docs/emailpassword/nestjs/guide#6-add-the-supertokens-error-handler)
-
-### Sistema de roles
-
-Criar o sistema de roles (atualmente usuários e publishers)
-
-- Adicionar publishers by publishers
-
-### Comunicação com outros serviços
-
-Conforme outros serviços são criados, comunicar o serviço de autenticação para falar quando um usuário é criado ou updated.
-
-### Personalizar - melhorias
-
-Depois de terminar todo o sistema, customizar toda a UI do supertokens (páginas de auth e emails)
-
-## Redaction service
-
-### v1
-
-- Criação de writers baseado nos eventos da API
-- Criação de drafts
-- Chamar outros publishers
-
-### v2
-
-- [Sistema de roles](#sistema-de-roles)
-
-### v3 - depois de blog service
-
-- Publicar ou publicar agendado para blog service
-
-### v4 - melhorias
-
-- Realtime update e save
-- Recovery de dead-lettering (principalmente para messages de publishers que não existiam)
+- [ ] Publicar agendado para blog service
+- [ ] Realtime update e save de drafts
+- [ ] Recovery de dead-lettering (principalmente para messages de users que não existiam)
+- [ ] Melhoria de configuração do API Gateway (Nginx)
