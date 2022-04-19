@@ -17,6 +17,7 @@ import { AddWriterToDraft } from './use-cases/add-writer-to-draft'
 import { CreateDraft } from './use-cases/create-draft'
 import { DeleteDraft } from './use-cases/delete-draft'
 import { GetDrafts } from './use-cases/get-drafts'
+import { PublishDraft } from './use-cases/publish-draft'
 import { RemoveWriterFromDraft } from './use-cases/remove-writer-from-draft'
 import { UpdateDraft } from './use-cases/update-draft'
 
@@ -30,6 +31,7 @@ export class DraftsController {
     private removeWriterFromDraft: RemoveWriterFromDraft,
     private updateDraft: UpdateDraft,
     private deleteDraft: DeleteDraft,
+    private publishDraft: PublishDraft,
   ) {}
 
   @Post()
@@ -81,5 +83,10 @@ export class DraftsController {
   @Delete('/:id')
   async delete(@UseWriter() writer: Writer, @Param('id') id: string) {
     return await this.deleteDraft.run(writer, id)
+  }
+
+  @Post('/:id/publish')
+  async publish(@UseWriter() writer: Writer, @Param('id') id: string) {
+    return await this.publishDraft.run(writer, id)
   }
 }

@@ -19,5 +19,37 @@ model User {
 
   createdAt DateTime
 
+  postsPublished     Post[]
+  postsContributions PostContributor[]
+
   @@map("users")
+}
+
+model Post {
+  // not default because the id must match with editorial-room service
+  id String @id
+
+  content String @db.Text
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  publisherId String
+
+  publisher    User              @relation(fields: [publisherId], references: [id])
+  contributors PostContributor[]
+
+  @@map("posts")
+}
+
+model PostContributor {
+  id String @id @default(uuid())
+
+  contributorId String
+  postId        String
+
+  contributor User @relation(fields: [contributorId], references: [id])
+  post        Post @relation(fields: [postId], references: [id], onUpdate: Cascade, onDelete: Cascade)
+
+  @@map("post_contributor")
 }
