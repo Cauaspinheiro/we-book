@@ -11,4 +11,10 @@ export class UsersRepository {
 
     return result
   }
+
+  async findFirst(where: Prisma.UserWhereInput) {
+    const result = await this.repo.user.findFirst({ where })
+
+    return result
+  }
 }

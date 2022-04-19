@@ -19,8 +19,9 @@ model User {
 
   createdAt DateTime
 
-  postsPublished     Post[]
-  postsContributions PostContributor[]
+  publications  Post[]
+  contributions PostContributor[]
+  views         PostView[]
 
   @@map("users")
 }
@@ -38,6 +39,7 @@ model Post {
 
   publisher    User              @relation(fields: [publisherId], references: [id])
   contributors PostContributor[]
+  viewers      PostView[]
 
   @@map("posts")
 }
@@ -52,4 +54,16 @@ model PostContributor {
   post        Post @relation(fields: [postId], references: [id], onUpdate: Cascade, onDelete: Cascade)
 
   @@map("post_contributor")
+}
+
+model PostView {
+  id String @id @default(uuid())
+
+  viewerId String
+  postId   String
+
+  viewer User @relation(fields: [viewerId], references: [id])
+  post   Post @relation(fields: [postId], references: [id], onUpdate: Cascade, onDelete: Cascade)
+
+  @@map("post_view")
 }
