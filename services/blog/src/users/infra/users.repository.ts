@@ -17,4 +17,23 @@ export class UsersRepository {
 
     return result
   }
+
+  async findFirstFull(where: Prisma.UserWhereInput) {
+    const result = await this.repo.user.findFirst({
+      where,
+      include: {
+        contributions: { select: { post: true } },
+        publications: true,
+        views: { select: { post: true } },
+      },
+    })
+
+    if (!result) return result
+
+    return {
+      ...result,
+      views: result.views.map(({ post }) => post),
+      contributions: result.contributions.map(({ post }) => post),
+    }
+  }
 }
