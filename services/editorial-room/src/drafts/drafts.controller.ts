@@ -11,8 +11,8 @@ import {
 import { Writer } from 'prisma/generated'
 import { UseWriter } from 'src/writers/infra/decorators/writer.decorator'
 import { WriterGuard } from 'src/writers/infra/guards/writer.guard'
-import { UpdateDraftDTO } from './domain/update-draft.dto'
 import { CreateDraftValidator } from './infra/validation/create-draft.validator'
+import { UpdateDraftValidator } from './infra/validation/update-draft.validator'
 import { AddWriterToDraft } from './use-cases/add-writer-to-draft'
 import { CreateDraft } from './use-cases/create-draft'
 import { DeleteDraft } from './use-cases/delete-draft'
@@ -75,7 +75,7 @@ export class DraftsController {
   async update(
     @UseWriter() writer: Writer,
     @Param('id') id: string,
-    @Body() data: UpdateDraftDTO,
+    @Body() data: UpdateDraftValidator,
   ) {
     return await this.updateDraft.run(writer, id, data)
   }
