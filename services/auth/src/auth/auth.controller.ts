@@ -1,19 +1,14 @@
-import { Controller, Get, Param, Req, Res } from '@nestjs/common'
-import { Request, Response } from 'express'
-import { ValidateSessionByApiSecret } from './use-cases/validate-session-by-api-secret'
+import { Controller, Get, UseGuards } from '@nestjs/common'
+import { ApiSecretGuard } from 'src/shared/infra/api-secret.guard'
+import { SessionContainer } from 'supertokens-node/recipe/session'
+import { AuthGuard } from './infra/auth.guard'
+import { Session } from './infra/session.decorator'
 
 @Controller('auth')
 export class AuthController {
-  constructor(private validateSessionByApiSecret: ValidateSessionByApiSecret) {}
-
-  @Get('/secret/:secret/validate-session')
-  async validateSessionBySecret(
-    @Param('secret') secret: string,
-    @Req() req: Request,
-    @Res() res: Response,
-  ) {
-    const userId = await this.validateSessionByApiSecret.run(req, res, secret)
-
-    return res.status(200).json(userId)
+  @Get('/secret/validate-session')
+  @UseGuards(ApiSecretGuard, AuthGuard)
+  async validateSessionBySecret(@Session() session: SessionContainer) {
+    return session.getUserId()
   }
 }

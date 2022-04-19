@@ -17,6 +17,7 @@ export class ValidateSession {
       const { data } = await axios.get(this.VALIDATE_SESSION_PATH, {
         headers: {
           Cookie: req.headers.cookie,
+          secret: process.env.AUTH_SERVICE_API_SECRET,
         },
       })
 
@@ -31,6 +32,6 @@ export class ValidateSession {
   }
 
   private get VALIDATE_SESSION_PATH() {
-    return `${process.env.API_BASE_URL}/auth/secret/${process.env.AUTH_SERVICE_API_SECRET}/validate-session`
+    return `${process.env.API_BASE_URL}/auth/secret/validate-session`
   }
 }
