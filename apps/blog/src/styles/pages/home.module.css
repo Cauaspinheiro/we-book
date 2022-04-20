@@ -1,0 +1,8 @@
+.home_container {
+  @apply flex items-center justify-center w-full h-screen bg-slate-800
+}
+
+.home_title {
+  @apply text-2xl text-blue-200 font-sans font-bold
+}
+
