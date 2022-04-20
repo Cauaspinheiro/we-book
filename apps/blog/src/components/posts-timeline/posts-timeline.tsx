@@ -14,7 +14,7 @@ export const PostsTimeline: FC<PostsTimelineProps> = ({ initialPosts }) => {
   const { isLoading, error, data } = useQuery(
     'posts-timeline',
     fetchPostTimeline,
-    { initialData: initialPosts },
+    { initialData: initialPosts, staleTime: 1000 * 60 },
   )
 
   if (isLoading) {

@@ -1,16 +1,19 @@
 import { FC } from 'react'
 
-import { PlusIcon } from '@heroicons/react/solid'
+import { LoginIcon } from '@heroicons/react/solid'
 
 import styles from './topbar.module.css'
+import Link from 'next/link'
 
 const UnauthenticatedNavTopbar: FC = () => {
   return (
     <div className={styles.topbar_navigation}>
-      <a href="#" className={styles.topbar_primary_button}>
-        <PlusIcon className={styles.topbar_icon} />
-        Criar conta
-      </a>
+      <Link href="/auth">
+        <a className={styles.topbar_primary_button}>
+          <LoginIcon className={styles.topbar_icon} />
+          Entrar
+        </a>
+      </Link>
     </div>
   )
 }

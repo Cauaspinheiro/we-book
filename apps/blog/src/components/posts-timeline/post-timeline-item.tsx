@@ -13,9 +13,13 @@ export const PostTimelineItem: FC<PostTimelineItemProps> = ({ post }) => {
     e.preventDefault()
     e.stopPropagation()
 
-    const url = `${window.location.href}/${post.id}`
+    const url = `${window.location.host}/${post.id}`
 
-    window.navigator.clipboard.writeText(url)
+    if (!window.navigator.clipboard) {
+      return alert('Cannot copy value to clipboard')
+    }
+
+    window.navigator.clipboard?.writeText(url)
   }
 
   return (

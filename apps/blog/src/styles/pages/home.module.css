@@ -1,6 +1,6 @@
 .home_container {
   @apply flex flex-col items-center justify-center min-h-screen w-full h-full
-   bg-gray-900 mx-auto
+   bg-gray-900 mx-auto md:px-0 px-4
 }
 
 .home_content_container {

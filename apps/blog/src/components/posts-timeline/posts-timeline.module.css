@@ -1,5 +1,5 @@
 .timeline_container {
-  @apply  flex flex-col items-center p-12 w-full h-full gap-10;
+  @apply  flex flex-col items-center py-4 sm:p-4 md:p-12 w-full h-full gap-10;
 
   flex: 2;
 }
@@ -9,7 +9,7 @@
 }
 
 .timeline_item_container {
-  @apply flex flex-col gap-4 p-6 w-full bg-slate-800 rounded-md text-white;
+  @apply flex flex-col gap-4 p-4 sm:p-6 w-full bg-slate-800 rounded-md text-white;
 }
 
 .timeline_item_header {
@@ -25,7 +25,7 @@
 }
 
 .timeline_item_created_at {
-  @apply font-medium text-sm text-slate-400;
+  @apply font-medium text-sm text-slate-400 md:pt-0 pt-2;
 }
 
 .timeline_item_description {
@@ -37,7 +37,8 @@
 }
 
 .timeline_item_footer_container {
-  @apply flex items-center gap-6 text-slate-300
+  @apply grid grid-cols-2 items-center text-slate-300
+  md:flex md:gap-6
 }
 
 .timeline_item_views {
@@ -45,7 +46,7 @@
 }
 
 .timeline_item_share {
-  @apply flex items-center gap-2 py-2 text-sm font-medium
+  @apply flex items-center gap-2 ml-4 md:py-2 md:ml-0 text-sm font-medium
   text-slate-200 hover:text-slate-400
 }
 

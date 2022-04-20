@@ -8,7 +8,7 @@ async function bootstrap() {
 
   app.use(cookieParser())
 
-  app.enableCors({ origin: 'http://localhost:2500', credentials: true })
+  app.enableCors({ origin: 'http://192.168.10.146:2500', credentials: true })
 
   app.connectMicroservice(blogQueue)
 

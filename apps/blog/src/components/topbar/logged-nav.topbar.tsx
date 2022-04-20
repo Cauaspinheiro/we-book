@@ -13,22 +13,22 @@ const LoggedNavigationTopbar: FC = () => {
     <div className={styles.topbar_navigation}>
       <a href="#" className={styles.topbar_primary_button}>
         <PlusIcon className={styles.topbar_icon} />
-        Criar
+        <span>Criar</span>
       </a>
 
       <a href="#" className={styles.topbar_secondary_button}>
         <DocumentTextIcon className={styles.topbar_icon} />
-        Posts
+        <span>Posts</span>
       </a>
 
       <a href="#" className={styles.topbar_secondary_button}>
         <PencilIcon className={styles.topbar_icon} />
-        Rascunhos
+        <span>Rascunhos</span>
       </a>
 
       <a href="#" className={styles.topbar_secondary_button}>
         <UserIcon className={styles.topbar_icon} />
-        Perfil
+        <span>Perfil</span>
       </a>
     </div>
   )
