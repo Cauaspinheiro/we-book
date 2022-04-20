@@ -39,6 +39,7 @@ const config: UserConfig = {
         'services/auth',
         'services/editorial-room',
         'services/blog',
+        'services/profile',
         'packages',
       ],
     ],
