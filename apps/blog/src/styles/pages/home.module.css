@@ -1,8 +1,19 @@
 .home_container {
-  @apply flex items-center justify-center w-full h-screen bg-slate-800
+  @apply flex flex-col items-center justify-center w-full h-screen bg-gray-900 mx-auto
+}
+
+.home_content_container {
+  @apply flex max-w-5xl w-full h-full columns-3
+}
+
+.home_content_timeline {
+  @apply flex flex-col items-center py-12 w-full h-full
+         border-solid border-x border-gray-700;
+
+  flex: 2;
 }
 
 .home_title {
-  @apply text-2xl text-blue-200 font-sans font-bold
+  @apply text-2xl text-white font-sans font-bold
 }
 

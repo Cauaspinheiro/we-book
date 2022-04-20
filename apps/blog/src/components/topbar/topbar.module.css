@@ -1,0 +1,22 @@
+.topbar {
+  @apply flex w-full h-20 items-center justify-between text-white px-20;
+}
+
+.topbar_navigation {
+  @apply flex items-center gap-10;
+}
+
+.topbar_primary_button {
+  @apply flex items-center px-6 h-9 gap-1 bg-blue-600 rounded-md
+  font-bold tracking-wide
+  hover:bg-blue-700 transition-colors;
+}
+
+.topbar_icon {
+  @apply w-5 h-5
+}
+
+.topbar_secondary_button {
+  @apply flex items-center gap-2 text-slate-300
+  hover:underline hover:text-slate-400
+}
