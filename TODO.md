@@ -1,8 +1,22 @@
-- [ ] Frontend
+## Roadmap
+
+### Frontend
+
+- [ ] UI home
+  - [ ] Adicionar as [novas informações de post](#backend)
+  - [ ] Mobile
+- [ ] Toast de sucesso
+- [ ] Página de post
 - [ ] Customizar toda a UI do supertokens (páginas de auth e emails)
-- [ ] Upsert em blog quando published draft
-  - Verificar se esse draft já foi publicado, se sim, update, se não, insert
-- [ ] Algumas configurações ainda estão hard coded, deixar tudo como env
+
+### Backend
+
+- [ ] Adicionar nome do usuário (só nome mesmo, sem first e last)
+- [ ] Adicionar mais informações de post
+  - Titulo
+  - SEO-url (gerar automaticamente com o titulo caso n seja provido)
+  - Descrição
+  - OG image (apenas URL)
 
 ## Melhorias (opcionais)
 

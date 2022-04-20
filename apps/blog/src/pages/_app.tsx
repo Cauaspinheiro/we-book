@@ -1,6 +1,8 @@
 import { AppProps } from 'next/app'
+import { QueryClientProvider } from 'react-query'
 import SuperTokensReact from 'supertokens-auth-react'
 import { frontendConfig } from '../config/auth.config'
+import { queryClient } from '../services/query'
 import '../styles/globals.css'
 
 if (typeof window !== 'undefined') {
@@ -9,5 +11,9 @@ if (typeof window !== 'undefined') {
 }
 
 export default function App({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+  return (
+    <QueryClientProvider client={queryClient}>
+      <Component {...pageProps} />
+    </QueryClientProvider>
+  )
 }

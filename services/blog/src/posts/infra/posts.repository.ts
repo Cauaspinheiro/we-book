@@ -28,6 +28,7 @@ export class PostsRepository {
         contributors: { select: { contributor: true } },
         _count: { select: { viewers: true } },
       },
+      orderBy: { createdAt: 'desc' },
     })
 
     return result.map((v) => ({

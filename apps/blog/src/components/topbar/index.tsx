@@ -1,7 +1,3 @@
-import dynamic from 'next/dynamic'
-
-const Topbar = dynamic(() => import('./topbar'), {
-  ssr: false,
-})
+import Topbar from './topbar'
 
 export default Topbar

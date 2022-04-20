@@ -2,6 +2,10 @@
   @apply flex w-full h-20 items-center justify-between text-white px-20;
 }
 
+.topbar_title {
+  @apply text-2xl font-bold text-slate-100 tracking-wide;
+}
+
 .topbar_navigation {
   @apply flex items-center gap-10;
 }
