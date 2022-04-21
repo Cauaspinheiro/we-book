@@ -25,6 +25,13 @@ export class SupertokensService {
       recipeList: [
         Session.init(),
         EmailPassword.init({
+          signUpFeature: {
+            formFields: [
+              {
+                id: 'name',
+              },
+            ],
+          },
           override: {
             apis: (originalImplementation) => {
               return {
@@ -43,7 +50,19 @@ export class SupertokensService {
 
                   // Post sign up response, we check if it was successful
                   if (response.status === 'OK') {
-                    authRMQGateway.onSignup(response.user)
+                    const nameField = input.formFields.find(
+                      ({ id }) => id === 'name',
+                    )
+
+                    if (!nameField) {
+                      throw new InternalServerErrorException(
+                        'Name field not found',
+                      )
+                    }
+
+                    const name = nameField.value
+
+                    authRMQGateway.onSignup({ ...response.user, name })
                   }
 
                   return response

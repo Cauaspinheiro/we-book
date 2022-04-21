@@ -18,6 +18,17 @@ export const frontendConfig = () => {
         emailVerificationFeature: {
           mode: process.env.NODE_ENV === 'production' ? 'REQUIRED' : 'OFF',
         },
+        signInAndUpFeature: {
+          signUpForm: {
+            formFields: [
+              {
+                id: 'name',
+                label: 'Nome',
+                placeholder: 'Seu nome completo',
+              },
+            ],
+          },
+        },
       }),
       SessionReact.init(),
     ],

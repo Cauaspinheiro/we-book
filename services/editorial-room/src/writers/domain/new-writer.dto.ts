@@ -1,4 +1,4 @@
-export interface NewWriterPayload {
+export interface NewWriterDTO {
   email: string
   id: string
   createdAt: string

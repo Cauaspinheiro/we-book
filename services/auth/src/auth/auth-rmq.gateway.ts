@@ -9,7 +9,7 @@ import { PROFILE_NEW_PROFILE_PATTERN } from './constants/rmq.patterns'
 export class AuthRMQGateway {
   constructor(@Inject(PROFILE_QUEUE_KEY) private profileQueue: ClientProxy) {}
 
-  onSignup(payload: SupertokensUser) {
+  onSignup(payload: SupertokensUser & { name: string }) {
     this.profileQueue.emit(PROFILE_NEW_PROFILE_PATTERN, payload)
   }
 }

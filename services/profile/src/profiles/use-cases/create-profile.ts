@@ -16,7 +16,7 @@ export class CreateProfile {
       createdAt: new Date(data.timeJoined),
       email: data.email,
       id: data.id,
-      name: data.email,
+      name: data.name,
     })
 
     await this.profilesRMQGateway.onNewProfile(profile)

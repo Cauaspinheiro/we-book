@@ -30,7 +30,7 @@ export const PostTimelineItem: FC<PostTimelineItemProps> = ({ post }) => {
         <span className={styles.timeline_item_divider}>·</span>
 
         <h3 className={styles.timeline_item_publisher}>
-          {post.publisher.email}
+          {post.publisher.name}
         </h3>
       </div>
 

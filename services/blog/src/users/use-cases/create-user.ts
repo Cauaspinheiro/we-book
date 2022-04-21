@@ -12,6 +12,7 @@ export class CreateUser {
       createdAt: new Date(data.createdAt),
       email: data.email,
       id: data.id,
+      name: data.name,
     })
   }
 }

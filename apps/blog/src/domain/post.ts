@@ -2,6 +2,7 @@ interface PostUser {
   id: string
   email: string
   createdAt: string
+  name: string
 }
 
 export interface Post {
