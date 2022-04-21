@@ -1,0 +1,60 @@
+.post_page_container {
+   @apply flex flex-col items-center justify-center min-h-screen w-full h-full
+   bg-gray-900 mx-auto md:px-0 px-4
+}
+
+.post_container {
+    @apply flex max-w-5xl w-full h-full flex-1 flex-col items-center py-10
+    gap-4 text-slate-200 pb-16;
+}
+
+.post_title {
+  @apply text-5xl font-bold text-center text-slate-100
+}
+
+.post_description {
+  @apply text-lg text-center font-medium text-slate-200 py-8
+}
+
+.post_creators_container {
+  @apply flex flex-col items-center text-center justify-center pt-4 w-full
+  md:gap-10 lg:gap-16 gap-8
+  lg:flex-row lg:items-start lg:text-left
+}
+
+.post_creators_heading {
+  @apply text-sm font-medium text-slate-400;
+}
+
+.post_creators_title {
+  @apply text-lg font-bold text-slate-100;
+}
+
+.post_creators_created_at {
+  @apply text-sm font-semibold text-slate-300
+}
+
+.post_publisher_centered {
+  @apply text-center;
+}
+
+.post_publisher_container {
+  @apply flex flex-col gap-2 min-w-max;
+}
+
+.post_contributors_container {
+  @apply flex flex-col md:flex-row items-end justify-start gap-3 md:gap-6 flex-wrap
+}
+
+.post_created_at {
+  @apply text-slate-400 text-center text-sm font-semibold;
+}
+
+.post_divider {
+  @apply w-5/6 h-px border-slate-700 my-8;
+}
+
+.post_content_container {
+  @apply prose flex-1 py-5 prose-invert
+}
+

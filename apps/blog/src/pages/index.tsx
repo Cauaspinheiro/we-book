@@ -1,4 +1,4 @@
-import { GetStaticProps, NextPage } from 'next'
+import { GetServerSideProps, NextPage } from 'next'
 import PostsTimeline from '../components/posts-timeline'
 import { fetchPostTimeline } from '../components/posts-timeline/post-timeline.fetch'
 import Topbar from '../components/topbar'
@@ -21,11 +21,13 @@ const HomePage: NextPage<HomePageProps> = ({ posts }) => {
   )
 }
 
-export const getStaticProps: GetStaticProps<HomePageProps> = async () => {
+export const getServerSideProps: GetServerSideProps<
+  HomePageProps
+> = async () => {
   try {
     const posts = await fetchPostTimeline()
 
-    return { props: { posts }, revalidate: 60 }
+    return { props: { posts } }
   } catch (error) {
     return { props: { posts: [] } }
   }

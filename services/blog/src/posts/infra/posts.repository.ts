@@ -21,6 +21,27 @@ export class PostsRepository {
     return result
   }
 
+  async findFirstFull(where: Prisma.PostWhereInput) {
+    const result = await this.repo.post.findFirst({
+      where,
+      include: {
+        publisher: true,
+        contributors: { select: { contributor: true } },
+        _count: { select: { viewers: true } },
+      },
+      orderBy: { createdAt: 'desc' },
+    })
+
+    if (!result) return null
+
+    return {
+      ...result,
+      contributors: result.contributors.map(({ contributor }) => contributor),
+      viewersCount: result._count.viewers,
+      _count: undefined,
+    }
+  }
+
   async findMany() {
     const result = await this.repo.post.findMany({
       include: {
@@ -37,6 +58,15 @@ export class PostsRepository {
       viewersCount: v._count.viewers,
       _count: undefined,
     }))
+  }
+
+  async findPaths() {
+    const result = await this.repo.post.findMany({
+      orderBy: { createdAt: 'desc' },
+      select: { urlPath: true },
+    })
+
+    return result.map(({ urlPath }) => urlPath)
   }
 
   async update(id: string, data: Prisma.PostUpdateInput) {

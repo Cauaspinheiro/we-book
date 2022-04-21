@@ -4,5 +4,5 @@
 }
 
 .home_content_container {
-  @apply flex max-w-5xl w-full h-full flex-1
+  @apply flex max-w-5xl w-full h-full flex-1 pb-16
 }

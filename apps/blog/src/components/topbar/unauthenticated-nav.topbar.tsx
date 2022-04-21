@@ -11,7 +11,7 @@ const UnauthenticatedNavTopbar: FC = () => {
       <Link href="/auth">
         <a className={styles.topbar_primary_button}>
           <LoginIcon className={styles.topbar_icon} />
-          Entrar
+          <span>Entrar</span>
         </a>
       </Link>
     </div>

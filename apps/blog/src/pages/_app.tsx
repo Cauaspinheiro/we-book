@@ -7,6 +7,7 @@ import { Toast } from '../components/toast'
 import { frontendConfig } from '../config/auth.config'
 import { queryClient } from '../services/query'
 import { useToastStore } from '../stores/toast.store'
+import { DefaultSeo } from 'next-seo'
 import '../styles/globals.css'
 
 if (typeof window !== 'undefined') {
@@ -21,6 +22,11 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <QueryClientProvider client={queryClient}>
       <ToastPrimitiveProvider swipeDirection="down">
+        <DefaultSeo
+          title="WeBook"
+          description="Faça posts de blog com seus amigos"
+        />
+
         <Component {...pageProps} />
 
         <Toast

@@ -27,5 +27,6 @@ export class CreateDraftValidator implements CreateDraftDTO {
   @IsOptional()
   @Matches(/^[_A-z0-9]*((-|\s)*[_A-z0-9])*$/)
   @MinLength(4)
+  @MaxLength(64)
   urlPath?: string | undefined
 }
