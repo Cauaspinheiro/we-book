@@ -8,3 +8,19 @@ body {
   /* RADIX-UI TOAST COMPONENT PADDING */
    --toast-viewport-padding: 32px;
 }
+
+body::-webkit-scrollbar {
+  width: 10px;
+}
+
+body::-webkit-scrollbar-track {
+  @apply bg-neutral-900;
+}
+
+body::-webkit-scrollbar-thumb {
+  @apply bg-neutral-800 rounded-sm;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+  @apply bg-neutral-700;
+}
