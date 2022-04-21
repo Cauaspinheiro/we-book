@@ -1,4 +1,5 @@
 import {
+  ConflictException,
   ForbiddenException,
   Injectable,
   NotFoundException,
@@ -26,7 +27,22 @@ export class UpdateDraft {
       )
     }
 
-    const updatedDraft = await this.draftsRepository.update(draftId, data)
+    let urlPath = data.urlPath
+
+    if (urlPath) {
+      urlPath = urlPath.toLowerCase()
+
+      const sameUrlPath = await this.draftsRepository.findFirst({ urlPath })
+
+      if (sameUrlPath) {
+        throw new ConflictException('Draft with this path already created')
+      }
+    }
+
+    const updatedDraft = await this.draftsRepository.update(draftId, {
+      ...data,
+      urlPath,
+    })
 
     return {
       ...updatedDraft,

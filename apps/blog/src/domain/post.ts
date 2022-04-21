@@ -10,6 +10,10 @@ export interface Post {
   content: string
   createdAt: string
   updatedAt: string
+  title: string
+  description: string
+  urlPath: string
+  ogCover: string
   publisher: PostUser
   contributors: PostUser[]
   viewersCount: number

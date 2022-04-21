@@ -28,7 +28,11 @@ model Writer {
 model Draft {
   id String @id @default(uuid())
 
-  content String @db.Text // already default to Text, but just to make sure...
+  content     String  @db.Text // already default to Text, but just to make sure...
+  title       String
+  description String?
+  urlPath     String? @unique
+  ogCover     String?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

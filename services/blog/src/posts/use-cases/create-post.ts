@@ -10,6 +10,10 @@ export class CreatePost {
     const post = await this.postsRepository.create({
       id: data.id,
       content: data.content,
+      description: data.description,
+      ogCover: data.ogCover,
+      title: data.title,
+      urlPath: data.urlPath,
       publisher: { connect: { id: data.publisherId } },
       contributors: {
         createMany: {

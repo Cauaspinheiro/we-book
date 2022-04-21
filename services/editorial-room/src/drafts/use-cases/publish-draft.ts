@@ -1,4 +1,5 @@
 import {
+  BadRequestException,
   ForbiddenException,
   Injectable,
   NotFoundException,
@@ -7,12 +8,14 @@ import { Writer } from 'prisma/generated'
 import { PublishDraftDTO } from '../domain/publish-draft.dto'
 import { DraftsRMQGateway } from '../drafts-rmq.gateway'
 import { DraftsRepository } from '../infra/drafts.repository'
+import { GenerateUrlPathFromTitle } from './generate-url-path-from-title'
 
 @Injectable()
 export class PublishDraft {
   constructor(
     private draftsRepository: DraftsRepository,
     private draftsRMQGateway: DraftsRMQGateway,
+    private generateUrlPathFromTitle: GenerateUrlPathFromTitle,
   ) {}
 
   async run(writer: Writer, draftId: string) {
@@ -28,10 +31,19 @@ export class PublishDraft {
       )
     }
 
+    if (!draft.description || !draft.ogCover) {
+      throw new BadRequestException('Missing draft information')
+    }
+
     const payload: PublishDraftDTO = {
       content: draft.content,
       id: draft.id,
       publisherId: writer.id,
+      description: draft.description,
+      ogCover: draft.ogCover,
+      title: draft.title,
+      urlPath:
+        draft.urlPath || (await this.generateUrlPathFromTitle.run(draft)),
       contributorsIds: this.getContributorsFromDraft(draft.writers),
     }
 
