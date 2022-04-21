@@ -4,4 +4,7 @@
 
 body {
   @apply min-h-screen h-full;
+
+  /* RADIX-UI TOAST COMPONENT PADDING */
+   --toast-viewport-padding: 32px;
 }

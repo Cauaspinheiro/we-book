@@ -33,7 +33,7 @@
 }
 
 .timeline_item_publisher {
-  @apply text-sm text-slate-300 font-semibold;
+  @apply text-sm text-slate-300 font-semibold md:mr-4 md:min-w-max;
 }
 
 .timeline_item_footer_container {

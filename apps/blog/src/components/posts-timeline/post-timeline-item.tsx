@@ -1,8 +1,10 @@
-import { FC, MouseEvent } from 'react'
+import { FC, MouseEvent, useEffect, useState } from 'react'
 import { Post } from '../../domain/post'
 import styles from './posts-timeline.module.css'
 import { ShareIcon } from '@heroicons/react/solid'
 import Link from 'next/link'
+import {} from 'next'
+import { useToastStore } from '../../stores/toast.store'
 
 export interface PostTimelineItemProps {
   post: Post
@@ -10,17 +12,27 @@ export interface PostTimelineItemProps {
 }
 
 export const PostTimelineItem: FC<PostTimelineItemProps> = ({ post }) => {
+  const toast = useToastStore((v) => v.toast)
+
+  const [isSafeContext, setIsSafeContext] = useState(true)
+
+  useEffect(() => {
+    if (!window.navigator?.clipboard) {
+      setIsSafeContext(false)
+    }
+  }, [])
+
   const copyToClipboard = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
     e.stopPropagation()
 
     const url = `${window.location.host}/${post.urlPath}`
 
-    if (!window.navigator.clipboard) {
-      return alert('Cannot copy value to clipboard')
-    }
+    window.navigator.clipboard.writeText(url)
 
-    window.navigator.clipboard?.writeText(url)
+    toast({
+      title: 'Link copiado!',
+    })
   }
 
   return (
@@ -43,13 +55,15 @@ export const PostTimelineItem: FC<PostTimelineItemProps> = ({ post }) => {
             {post.viewersCount} visualizações
           </span>
 
-          <button
-            onClick={(e) => copyToClipboard(e)}
-            className={styles.timeline_item_share}
-          >
-            <ShareIcon className={styles.timeline_item_share_icon} />
-            Compartilhar
-          </button>
+          {isSafeContext && (
+            <button
+              onClick={(e) => copyToClipboard(e)}
+              className={styles.timeline_item_share}
+            >
+              <ShareIcon className={styles.timeline_item_share_icon} />
+              Compartilhar
+            </button>
+          )}
 
           <h3 className={styles.timeline_item_created_at}>
             {new Date(post.createdAt).toLocaleString('PT-BR', {

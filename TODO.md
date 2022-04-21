@@ -5,7 +5,7 @@
 - [x] UI home
   - [x] Adicionar as [novas informações de post](#backend)
   - [x] Mobile
-- [ ] Toast de sucesso
+- [x] Toast de sucesso
 - [ ] Página de post
 - [ ] Página de perfil
 - [ ] Página de posts
