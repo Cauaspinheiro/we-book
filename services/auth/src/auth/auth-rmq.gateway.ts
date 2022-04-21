@@ -1,23 +1,15 @@
 import { Inject, Injectable } from '@nestjs/common'
 import { ClientProxy } from '@nestjs/microservices'
-import { BLOG_QUEUE_KEY } from 'src/shared/queues/blog.queue'
-import { EDITORIAL_ROOM_QUEUE_KEY } from 'src/shared/queues/editorial-room.queue'
+import { PROFILE_QUEUE_KEY } from 'src/shared/queues/profile.queue'
 import { User as SupertokensUser } from 'supertokens-node/recipe/emailpassword'
 
-import {
-  BLOG_NEW_USER_PATTERN,
-  EDITORIAL_ROOM_NEW_WRITER_PATTERN,
-} from './constants/rmq.patterns'
+import { PROFILE_NEW_PROFILE_PATTERN } from './constants/rmq.patterns'
 
 @Injectable()
 export class AuthRMQGateway {
-  constructor(
-    @Inject(EDITORIAL_ROOM_QUEUE_KEY) private editorialRoomQueue: ClientProxy,
-    @Inject(BLOG_QUEUE_KEY) private blogQueue: ClientProxy,
-  ) {}
+  constructor(@Inject(PROFILE_QUEUE_KEY) private profileQueue: ClientProxy) {}
 
   onSignup(payload: SupertokensUser) {
-    this.editorialRoomQueue.emit(EDITORIAL_ROOM_NEW_WRITER_PATTERN, payload)
-    this.blogQueue.emit(BLOG_NEW_USER_PATTERN, payload)
+    this.profileQueue.emit(PROFILE_NEW_PROFILE_PATTERN, payload)
   }
 }

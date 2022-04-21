@@ -1,5 +1,5 @@
 {
-  "name": "api",
+  "name": "profile",
   "version": "0.0.1",
   "scripts": {
     "prebuild": "rimraf dist",
@@ -14,17 +14,23 @@
   "dependencies": {
     "@nestjs/common": "^8.0.0",
     "@nestjs/core": "^8.0.0",
+    "@nestjs/microservices": "^8.4.4",
     "@nestjs/platform-express": "^8.0.0",
+    "@prisma/client": "^3.12.0",
+    "amqp-connection-manager": "^4.1.2",
+    "amqplib": "^0.8.0",
+    "cookie-parser": "^1.4.6",
+    "prisma": "^3.12.0",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^7.2.0"
   },
   "devDependencies": {
-    "config": "*",
     "@nestjs/cli": "^8.0.0",
     "@nestjs/schematics": "^8.0.0",
     "@types/express": "^4.17.13",
     "@types/node": "^16.0.0",
+    "config": "*",
     "source-map-support": "^0.5.20",
     "ts-loader": "^9.2.3",
     "ts-node": "^10.0.0",

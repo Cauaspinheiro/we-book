@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:14.2-alpine
+    environment:
+      POSTGRES_DB: profile__db
+      POSTGRES_USER: profile__user
+      POSTGRES_PASSWORD: profile__password
+    ports:
+      - 25332:5432

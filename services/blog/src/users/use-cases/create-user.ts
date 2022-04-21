@@ -9,7 +9,7 @@ export class CreateUser {
 
   async run(data: NewUserDTO) {
     await this.usersRepository.create({
-      createdAt: new Date(data.timeJoined),
+      createdAt: new Date(data.createdAt),
       email: data.email,
       id: data.id,
     })

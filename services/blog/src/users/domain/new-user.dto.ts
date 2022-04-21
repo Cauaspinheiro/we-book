@@ -1,5 +1,6 @@
 export interface NewUserDTO {
   email: string
   id: string
-  timeJoined: number
+  createdAt: string
+  name: string
 }

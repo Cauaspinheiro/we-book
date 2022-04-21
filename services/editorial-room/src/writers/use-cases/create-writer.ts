@@ -10,7 +10,7 @@ export class CreateWriter {
     await this.writersRepository.create({
       id: data.id,
       email: data.email,
-      createdAt: new Date(data.timeJoined),
+      createdAt: new Date(data.createdAt),
     })
   }
 }
