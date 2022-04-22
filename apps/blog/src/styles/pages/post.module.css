@@ -55,6 +55,6 @@
 }
 
 .post_content_container {
-  @apply prose flex-1 py-5 prose-invert
+  @apply prose flex-1 py-5 prose-invert w-full;
 }
 

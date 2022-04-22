@@ -7,11 +7,9 @@
   - [x] Mobile
 - [x] Toast de sucesso
 - [x] Página de post
-- [ ] Página de posts
+- [x] Página de posts
 
-  - [ ] Listar posts que nem na home só que apenas os do usuário (publisher ou contribuinte)
-
-- [ ] Favicon
+  - [x] Listar posts que nem na home só que apenas os do usuário (publisher ou contribuinte)
 
 - [ ] Páginas de drafts
 - [ ] Página de draft
@@ -27,8 +25,8 @@
   - Descrição
   - OG image (apenas URL)
 - [ ] CORS via Nginx e melhorar toda a configuração (remover configs hard-coded)
-- [ ] Deletar post e draft (deletar um leva a deletar o outro)
-- [ ] Upsert de post quando publicar draft
+- [x] Deletar post e draft
+- [x] Upsert de post quando publicar draft
 
 - [ ] Adicionar features do serviço de profile
   - [ ] Quantidade de views totais dos seus posts
@@ -38,7 +36,10 @@
 
 ## Melhorias (opcionais)
 
+- [ ] Pagination em home e posts
 - [ ] Melhoria de UI?
+  - [ ] Favicon
+  - [ ] Adicionar confirmação mais bonita do que a nativa na hora de deletar
 - [ ] Publicar agendado para blog service
 - [ ] Realtime update e save de drafts
 - [ ] Recovery de dead-lettering (principalmente para messages de users que não existiam)

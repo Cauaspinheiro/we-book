@@ -6,8 +6,12 @@ import { BaseRepository } from 'src/shared/infra/base.repository'
 export class PostsRepository {
   constructor(private repo: BaseRepository) {}
 
-  async create(data: Prisma.PostCreateInput) {
-    const result = await this.repo.post.create({ data })
+  async upsert(id: string, data: Prisma.PostCreateInput) {
+    const result = await this.repo.post.upsert({
+      where: { id },
+      create: data,
+      update: data,
+    })
 
     return result
   }
@@ -42,8 +46,9 @@ export class PostsRepository {
     }
   }
 
-  async findMany() {
+  async findMany(where?: Prisma.PostWhereInput) {
     const result = await this.repo.post.findMany({
+      where,
       include: {
         publisher: true,
         contributors: { select: { contributor: true } },
@@ -71,6 +76,12 @@ export class PostsRepository {
 
   async update(id: string, data: Prisma.PostUpdateInput) {
     const result = await this.repo.post.update({ where: { id }, data })
+
+    return result
+  }
+
+  async delete(id: string) {
+    const result = await this.repo.post.delete({ where: { id } })
 
     return result
   }

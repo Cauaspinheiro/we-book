@@ -1,21 +1,21 @@
 import { FC } from 'react'
 import { useQuery } from 'react-query'
-import { Post } from '../../domain/post'
-import { PostTimelineItem } from './post-timeline-item'
+import { UserPost } from '../../domain/user-post'
 
-import styles from './posts-timeline.module.css'
+import styles from '../posts-timeline/posts-timeline.module.css'
+import { UserPostsTimelineItem } from './user-posts-timeline-item'
 
-export interface PostsTimelineProps {
-  initialPosts: Post[]
-  fetchPostsTimeline: () => Promise<Post[]>
+export interface UserPostsTimelineProps {
+  initialPosts: UserPost[]
+  fetchPostsTimeline: () => Promise<UserPost[]>
 }
 
-export const PostsTimeline: FC<PostsTimelineProps> = ({
+export const UserPostsTimeline: FC<UserPostsTimelineProps> = ({
   initialPosts,
   fetchPostsTimeline,
 }) => {
   const { isLoading, error, data } = useQuery(
-    'posts-timeline',
+    'user-posts-timeline',
     fetchPostsTimeline,
     {
       initialData: initialPosts,
@@ -50,7 +50,7 @@ export const PostsTimeline: FC<PostsTimelineProps> = ({
   return (
     <div className={styles.timeline_container}>
       {data.map((post) => (
-        <PostTimelineItem key={post.id} post={post} />
+        <UserPostsTimelineItem key={post.id} post={post} />
       ))}
     </div>
   )

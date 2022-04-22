@@ -9,15 +9,15 @@
 }
 
 .timeline_item_container {
-  @apply flex flex-col gap-4 p-4 sm:p-6 w-full bg-slate-800 rounded-md text-white;
+  @apply flex flex-col gap-4 p-3 py-4 sm:p-6 w-full bg-slate-800 rounded-md text-white;
 }
 
 .timeline_item_header {
-  @apply flex gap-2 items-baseline
+  @apply flex gap-1 md:gap-2 items-baseline
 }
 
 .timeline_item_title {
-  @apply font-bold text-xl text-white;
+  @apply font-bold text-lg md:text-xl text-white;
 }
 
 .timeline_item_divider {
@@ -37,8 +37,8 @@
 }
 
 .timeline_item_footer_container {
-  @apply grid grid-cols-2 items-center text-slate-300
-  md:flex md:gap-6
+  @apply flex items-baseline justify-between text-slate-300 gap-x-6 gap-y-2 flex-wrap
+  md:justify-start
 }
 
 .timeline_item_views {
@@ -46,11 +46,22 @@
 }
 
 .timeline_item_share {
-  @apply flex items-center gap-2 ml-4 md:py-2 md:ml-0 text-sm font-medium
+  @apply flex items-baseline  gap-2 ml-4 md:py-2 md:ml-0 text-sm font-medium
   text-slate-200 hover:text-slate-400
 }
 
 .timeline_item_share_icon {
-  @apply w-4 h-4;
+  @apply w-4 h-4 translate-y-0.5;
 }
 
+.timeline_item_manage_container {
+  @apply flex self-center items-center justify-end flex-1 gap-3 md:gap-4;
+}
+
+.timeline_item_manage_item {
+  @apply w-5 h-5 flex justify-center text-slate-300
+}
+
+.timeline_item_manage_icon {
+  @apply w-5 h-5  hover:text-slate-500 transition-colors;
+}

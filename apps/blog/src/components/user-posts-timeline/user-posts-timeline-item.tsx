@@ -1,19 +1,21 @@
 import { FC, MouseEvent, useEffect, useState } from 'react'
-import { Post } from '../../domain/post'
-import styles from './posts-timeline.module.css'
+
+import styles from '../posts-timeline/posts-timeline.module.css'
 import { PencilIcon, ShareIcon, TrashIcon } from '@heroicons/react/solid'
 import Link from 'next/link'
-import {} from 'next'
 import { useToastStore } from '../../stores/toast.store'
 import { api } from '../../services/api'
 import { useRouter } from 'next/router'
+import { UserPost } from '../../domain/user-post'
 
-export interface PostTimelineItemProps {
-  post: Post
+export interface UserPostsTimelineItemProps {
+  post: UserPost
   key: string
 }
 
-export const PostTimelineItem: FC<PostTimelineItemProps> = ({ post }) => {
+export const UserPostsTimelineItem: FC<UserPostsTimelineItemProps> = ({
+  post,
+}) => {
   const toast = useToastStore((v) => v.toast)
   const router = useRouter()
 
@@ -67,6 +69,23 @@ export const PostTimelineItem: FC<PostTimelineItemProps> = ({ post }) => {
           <h3 className={styles.timeline_item_publisher}>
             {post.publisher.name}
           </h3>
+
+          <div className={styles.timeline_item_manage_container}>
+            <Link href={`/drafts/${post.urlPath}/edit`}>
+              <a className={styles.timeline_item_manage_item}>
+                <PencilIcon className={styles.timeline_item_manage_icon} />
+              </a>
+            </Link>
+
+            {post.isPublisher && (
+              <button
+                className={styles.timeline_item_manage_item}
+                onClick={handleDelete}
+              >
+                <TrashIcon className={styles.timeline_item_manage_icon} />
+              </button>
+            )}
+          </div>
         </div>
 
         <p className={styles.timeline_item_description}>{post.description}</p>

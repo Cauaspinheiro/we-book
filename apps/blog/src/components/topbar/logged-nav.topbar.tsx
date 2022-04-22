@@ -8,28 +8,37 @@ import {
 } from '@heroicons/react/solid'
 
 import styles from './topbar.module.css'
+import Link from 'next/link'
 const LoggedNavigationTopbar: FC = () => {
   return (
     <div className={styles.topbar_navigation}>
-      <a href="#" className={styles.topbar_primary_button}>
-        <PlusIcon className={styles.topbar_icon} />
-        <span>Criar</span>
-      </a>
+      <Link href="/drafts/new">
+        <a className={styles.topbar_primary_button}>
+          <PlusIcon className={styles.topbar_icon} />
+          <span>Criar</span>
+        </a>
+      </Link>
 
-      <a href="#" className={styles.topbar_secondary_button}>
-        <DocumentTextIcon className={styles.topbar_icon} />
-        <span>Posts</span>
-      </a>
+      <Link href="/posts">
+        <a className={styles.topbar_secondary_button}>
+          <DocumentTextIcon className={styles.topbar_icon} />
+          <span>Posts</span>
+        </a>
+      </Link>
 
-      <a href="#" className={styles.topbar_secondary_button}>
-        <PencilIcon className={styles.topbar_icon} />
-        <span>Rascunhos</span>
-      </a>
+      <Link href="/drafts">
+        <a className={styles.topbar_secondary_button}>
+          <PencilIcon className={styles.topbar_icon} />
+          <span>Rascunhos</span>
+        </a>
+      </Link>
 
-      <a href="#" className={styles.topbar_secondary_button}>
-        <UserIcon className={styles.topbar_icon} />
-        <span>Perfil</span>
-      </a>
+      <Link href="/me">
+        <a className={styles.topbar_secondary_button}>
+          <UserIcon className={styles.topbar_icon} />
+          <span>Perfil</span>
+        </a>
+      </Link>
     </div>
   )
 }

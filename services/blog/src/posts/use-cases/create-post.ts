@@ -7,7 +7,23 @@ export class CreatePost {
   constructor(private postsRepository: PostsRepository) {}
 
   async run(data: CreatePostDTO) {
-    const post = await this.postsRepository.create({
+    const existPost = await this.postsRepository.findFirstFull({
+      id: data.id,
+    })
+
+    let newContributors: string[] = []
+
+    if (existPost) {
+      newContributors = data.contributorsIds.filter((id) => {
+        if (!existPost.contributors.find((existing) => existing.id === id)) {
+          return true
+        }
+
+        return false
+      })
+    }
+
+    const post = await this.postsRepository.upsert(data.id, {
       id: data.id,
       content: data.content,
       description: data.description,
@@ -17,7 +33,7 @@ export class CreatePost {
       publisher: { connect: { id: data.publisherId } },
       contributors: {
         createMany: {
-          data: data.contributorsIds.map((id) => ({ contributorId: id })),
+          data: newContributors.map((id) => ({ contributorId: id })),
         },
       },
     })
