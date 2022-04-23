@@ -1,5 +1,5 @@
 import { Controller } from '@nestjs/common'
-import { EventPattern, Payload } from '@nestjs/microservices'
+import { EventPattern, MessagePattern, Payload } from '@nestjs/microservices'
 import {
   DRAFT_DELETED_PATTERN,
   NEW_POST_PATTERN,
@@ -16,9 +16,9 @@ export class PostsEvents {
     private removeDraftFromPost: RemoveDraftFromPost,
   ) {}
 
-  @EventPattern(NEW_POST_PATTERN)
+  @MessagePattern(NEW_POST_PATTERN)
   async onPostPublished(@Payload() data: CreatePostDTO) {
-    await this.createPost.run(data)
+    return await this.createPost.run(data)
   }
 
   @EventPattern(DRAFT_DELETED_PATTERN)

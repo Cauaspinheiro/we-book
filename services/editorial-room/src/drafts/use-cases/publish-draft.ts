@@ -8,14 +8,12 @@ import { Writer } from 'prisma/generated'
 import { PublishDraftDTO } from '../domain/publish-draft.dto'
 import { DraftsRMQGateway } from '../drafts-rmq.gateway'
 import { DraftsRepository } from '../infra/drafts.repository'
-import { GenerateUrlPathFromTitle } from './generate-url-path-from-title'
 
 @Injectable()
 export class PublishDraft {
   constructor(
     private draftsRepository: DraftsRepository,
     private draftsRMQGateway: DraftsRMQGateway,
-    private generateUrlPathFromTitle: GenerateUrlPathFromTitle,
   ) {}
 
   async run(writer: Writer, draftId: string) {
@@ -42,12 +40,15 @@ export class PublishDraft {
       description: draft.description,
       ogCover: draft.ogCover,
       title: draft.title,
-      urlPath:
-        draft.urlPath || (await this.generateUrlPathFromTitle.run(draft)),
+      urlPath: draft.urlPath,
       contributorsIds: this.getContributorsFromDraft(draft.writers),
     }
 
-    this.draftsRMQGateway.onDraftPublished(payload)
+    const { urlPath } = await this.draftsRMQGateway.onDraftPublished(payload)
+
+    await this.draftsRepository.update(draft.id, { urlPath })
+
+    return urlPath
   }
 
   private getContributorsFromDraft(

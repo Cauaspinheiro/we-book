@@ -4,7 +4,7 @@ export interface CreatePostDTO {
   description: string
   title: string
   ogCover: string
-  urlPath: string
+  urlPath: string | null
   publisherId: string
   contributorsIds: string[]
 }

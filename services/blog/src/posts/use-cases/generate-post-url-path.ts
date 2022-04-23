@@ -1,21 +1,18 @@
 import { Injectable } from '@nestjs/common'
-import { Draft } from 'prisma/generated'
-import { DraftsRepository } from '../infra/drafts.repository'
+import { PostsRepository } from '../infra/posts.repository'
 
 @Injectable()
-export class GenerateUrlPathFromTitle {
-  constructor(private draftsRepository: DraftsRepository) {}
+export class GeneratePostUrlPath {
+  constructor(private postsRepository: PostsRepository) {}
 
-  async run(draft: Draft) {
-    let urlPath = this.formatTitleToUrl(draft.title)
+  async run(data: string) {
+    let urlPath = this.formatTitleToUrl(data)
 
-    const sameUrlPath = await this.draftsRepository.findFirst({ urlPath })
+    const sameUrlPath = await this.postsRepository.findFirst({ urlPath })
 
     if (sameUrlPath) {
       urlPath = urlPath + `-${this.generateRandomInt()}`
     }
-
-    await this.draftsRepository.update(draft.id, { urlPath })
 
     return urlPath
   }
@@ -26,7 +23,7 @@ export class GenerateUrlPathFromTitle {
       .toLowerCase()
       .normalize('NFD') // Remove accents from string pt1
       .replace(/[\u0300-\u036f]/g, '') // Remove accents from string pt2
-      .replace(/[^a-zA-Z ]/g, '') // Remove all special characters
+      .replace(/[^a-zA-Z0-9- ]/g, '') // Remove all special characters
       .split(' ')
       .join('-')
   }

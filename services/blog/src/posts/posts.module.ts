@@ -5,6 +5,7 @@ import { PostsController } from './posts.controller'
 import { PostsEvents } from './posts.events'
 import { CreatePost } from './use-cases/create-post'
 import { DeletePost } from './use-cases/delete-post'
+import { GeneratePostUrlPath } from './use-cases/generate-post-url-path'
 import { GetPostBySlug } from './use-cases/get-post-by-slug'
 import { GetPostPaths } from './use-cases/get-post-paths'
 import { GetUserPosts } from './use-cases/get-user-posts'
@@ -23,6 +24,7 @@ import { ViewPost } from './use-cases/view-post'
     GetUserPosts,
     DeletePost,
     RemoveDraftFromPost,
+    GeneratePostUrlPath,
   ],
   controllers: [PostsEvents, PostsController],
   imports: [UsersModule],

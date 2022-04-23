@@ -4,7 +4,7 @@ export interface PublishDraftDTO {
   title: string
   description: string
   ogCover: string
-  urlPath: string
+  urlPath: string | null
   publisherId: string
   contributorsIds: string[]
 }
