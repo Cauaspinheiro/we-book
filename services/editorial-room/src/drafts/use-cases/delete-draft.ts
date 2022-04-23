@@ -4,11 +4,15 @@ import {
   NotFoundException,
 } from '@nestjs/common'
 import { Writer } from 'prisma/generated'
+import { DraftsRMQGateway } from '../drafts-rmq.gateway'
 import { DraftsRepository } from '../infra/drafts.repository'
 
 @Injectable()
 export class DeleteDraft {
-  constructor(private draftsRepository: DraftsRepository) {}
+  constructor(
+    private draftsRepository: DraftsRepository,
+    private draftsRMQGateway: DraftsRMQGateway,
+  ) {}
 
   async run(writer: Writer, draftId: string) {
     const draft = await this.draftsRepository.findFirst({
@@ -26,5 +30,7 @@ export class DeleteDraft {
     }
 
     await this.draftsRepository.delete(draftId)
+
+    await this.draftsRMQGateway.onDraftDeleted(draftId)
   }
 }

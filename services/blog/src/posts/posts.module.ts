@@ -9,6 +9,7 @@ import { GetPostBySlug } from './use-cases/get-post-by-slug'
 import { GetPostPaths } from './use-cases/get-post-paths'
 import { GetUserPosts } from './use-cases/get-user-posts'
 import { ListPosts } from './use-cases/list-posts'
+import { RemoveDraftFromPost } from './use-cases/remove-draft-from-post'
 import { ViewPost } from './use-cases/view-post'
 
 @Module({
@@ -21,6 +22,7 @@ import { ViewPost } from './use-cases/view-post'
     GetPostBySlug,
     GetUserPosts,
     DeletePost,
+    RemoveDraftFromPost,
   ],
   controllers: [PostsEvents, PostsController],
   imports: [UsersModule],

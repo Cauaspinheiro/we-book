@@ -37,6 +37,8 @@ model Post {
   urlPath     String @unique
   ogCover     String
 
+  hasDraft Boolean @default(true)
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
