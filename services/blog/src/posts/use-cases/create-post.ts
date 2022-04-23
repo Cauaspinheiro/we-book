@@ -11,8 +11,9 @@ export class CreatePost {
       id: data.id,
     })
 
-    let newContributors: string[] = []
+    let newContributors: string[] = data.contributorsIds
 
+    // if post exists, filter already linked contributors
     if (existPost) {
       newContributors = data.contributorsIds.filter((id) => {
         if (!existPost.contributors.find((existing) => existing.id === id)) {
