@@ -27,6 +27,9 @@
 - [ ] CORS via Nginx e melhorar toda a configuração (remover configs hard-coded)
 - [x] Deletar post e draft
 - [x] Upsert de post quando publicar draft
+- [ ] Passar a geração de url aleatória para blog para garantir que não vai ter 2 uls iguais
+
+  - [ ] Deixar números na transformação de urls
 
 - [ ] Adicionar features do serviço de profile
   - [ ] Quantidade de views totais dos seus posts
