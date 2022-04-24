@@ -1,25 +1,25 @@
 import { FC } from 'react'
 import { useQuery } from 'react-query'
-import { UserPost } from '../../domain/user-post'
+import { Draft } from '../../domain/draft'
 import { useUserStore } from '../../stores/user.store'
 
 import styles from '../posts-timeline/posts-timeline.module.css'
-import { UserPostsTimelineItem } from './user-posts-timeline-item'
+import { DraftsTimelineItem } from './drafts-timeline-item'
 
-export interface UserPostsTimelineProps {
-  initialPosts: UserPost[]
-  fetchPostsTimeline: () => Promise<UserPost[]>
+export interface DraftsTimelineProps {
+  initialDrafts: Draft[]
+  fetchDraftsTimeline: () => Promise<Draft[]>
 }
 
-export const UserPostsTimeline: FC<UserPostsTimelineProps> = ({
-  initialPosts,
-  fetchPostsTimeline,
+export const DraftsTimeline: FC<DraftsTimelineProps> = ({
+  initialDrafts,
+  fetchDraftsTimeline,
 }) => {
   const { isLoading, error, data } = useQuery(
-    'user-posts-timeline',
-    fetchPostsTimeline,
+    'drafts-timeline',
+    fetchDraftsTimeline,
     {
-      initialData: initialPosts,
+      initialData: initialDrafts,
       staleTime: 1000 * 60,
     },
   )
@@ -62,8 +62,8 @@ export const UserPostsTimeline: FC<UserPostsTimelineProps> = ({
 
   return (
     <div className={styles.timeline_container}>
-      {data.map((post) => (
-        <UserPostsTimelineItem key={post.id} post={post} />
+      {data.map((draft) => (
+        <DraftsTimelineItem key={draft.id} draft={draft} />
       ))}
     </div>
   )

@@ -27,9 +27,7 @@ export class CreateDraft {
       description: createDraftDTO.description,
       ogCover: createDraftDTO.ogCover,
       urlPath,
-      writers: {
-        create: { writer: { connect: { id: writer.id } }, isCreator: true },
-      },
+      creator: { connect: { id: writer.id } },
     })
 
     return result

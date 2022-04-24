@@ -1,0 +1,8 @@
+.drafts_container {
+  @apply flex flex-col items-center justify-center min-h-screen w-full h-full
+   bg-gray-900 mx-auto md:px-0 px-4
+}
+
+.drafts_content_container {
+  @apply flex max-w-5xl w-full h-full flex-1 pb-16
+}

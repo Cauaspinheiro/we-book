@@ -21,7 +21,10 @@ export class UpdateDraft {
       throw new NotFoundException('Draft not found')
     }
 
-    if (!draft.writers.find((w) => w.writer.id === writer.id)) {
+    if (
+      !draft.contributors.find((w) => w.writer.id === writer.id) &&
+      draft.creatorId !== writer.id
+    ) {
       throw new ForbiddenException(
         'Cannot update a draft that you are not a writer',
       )
@@ -46,10 +49,7 @@ export class UpdateDraft {
 
     return {
       ...updatedDraft,
-      writers: updatedDraft.writers.map(({ writer, isCreator }) => ({
-        ...writer,
-        isCreator,
-      })),
+      contributors: updatedDraft.contributors.map(({ writer }) => writer),
     }
   }
 }

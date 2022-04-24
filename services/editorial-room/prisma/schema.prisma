@@ -20,7 +20,8 @@ model Writer {
 
   createdAt DateTime
 
-  drafts WriterDraft[]
+  contributions WriterDraft[]
+  draftsCreated Draft[]
 
   @@map("writers")
 }
@@ -37,15 +38,16 @@ model Draft {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  writers WriterDraft[]
+  creatorId String
+
+  creator      Writer        @relation(fields: [creatorId], references: [id])
+  contributors WriterDraft[]
 
   @@map("drafts")
 }
 
 model WriterDraft {
   id String @id @default(uuid())
-
-  isCreator Boolean @default(false)
 
   draftId  String
   writerId String

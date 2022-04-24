@@ -8,15 +8,17 @@ export class GetDrafts {
 
   async run(writer: Writer) {
     const drafts = await this.draftsRepository.findMany({
-      writers: { some: { writerId: writer.id } },
+      OR: [
+        { creatorId: writer.id },
+        {
+          contributors: { some: { writerId: writer.id } },
+        },
+      ],
     })
 
     return drafts.map((draft) => ({
       ...draft,
-      writers: draft.writers.map(({ writer, isCreator }) => ({
-        ...writer,
-        isCreator,
-      })),
+      contributors: draft.contributors.map(({ writer }) => writer),
     }))
   }
 }

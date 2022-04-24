@@ -23,7 +23,7 @@ export class PublishDraft {
       throw new NotFoundException('Draft not found')
     }
 
-    if (!draft.writers.find((w) => w.writer.id === writer.id && w.isCreator)) {
+    if (draft.creator.id !== writer.id) {
       throw new ForbiddenException(
         'Cannot published a draft that you are not the creator',
       )
@@ -36,12 +36,12 @@ export class PublishDraft {
     const payload: PublishDraftDTO = {
       content: draft.content,
       id: draft.id,
-      publisherId: writer.id,
+      publisherId: draft.creator.id,
       description: draft.description,
       ogCover: draft.ogCover,
       title: draft.title,
       urlPath: draft.urlPath,
-      contributorsIds: this.getContributorsFromDraft(draft.writers),
+      contributorsIds: this.getContributorsFromDraft(draft.contributors),
     }
 
     const { urlPath } = await this.draftsRMQGateway.onDraftPublished(payload)
@@ -51,11 +51,7 @@ export class PublishDraft {
     return urlPath
   }
 
-  private getContributorsFromDraft(
-    writers: Array<{ writer: Writer; isCreator: boolean }>,
-  ) {
-    return writers
-      .filter(({ isCreator }) => !isCreator)
-      .map(({ writer: { id } }) => id)
+  private getContributorsFromDraft(writers: Array<{ writer: Writer }>) {
+    return writers.map(({ writer: { id } }) => id)
   }
 }

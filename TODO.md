@@ -11,9 +11,10 @@
 
   - [x] Listar posts que nem na home só que apenas os do usuário (publisher ou contribuinte)
 
+- [ ] Página de perfil
+
 - [ ] Páginas de drafts
 - [ ] Página de draft
-- [ ] Página de perfil
 - [ ] Customizar toda a UI do supertokens (páginas de auth e emails)
 
 ### Backend
@@ -25,17 +26,18 @@
   - Descrição
   - OG image (apenas URL)
 - [ ] CORS via Nginx e melhorar toda a configuração (remover configs hard-coded)
+- [ ] Adicionar features do serviço de profile
+
+  - [ ] Quantidade de views totais dos seus posts
+  - [ ] Quantidade de posts publicados
+  - [ ] Quantidade de posts contribuídos
+  - [ ] Quantidade de posts vistos
+
 - [x] Deletar post e draft
 - [x] Upsert de post quando publicar draft
 - [x] Passar a geração de url aleatória para blog para garantir que não vai ter 2 uls iguais
 
   - [x] Deixar números na transformação de urls
-
-- [ ] Adicionar features do serviço de profile
-  - [ ] Quantidade de views totais dos seus posts
-  - [ ] Quantidade de posts publicados
-  - [ ] Quantidade de posts contribuídos
-  - [ ] Quantidade de posts vistos
 
 ## Melhorias (opcionais)
 

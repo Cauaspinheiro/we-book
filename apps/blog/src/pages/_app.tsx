@@ -9,11 +9,16 @@ import { queryClient } from '../services/query'
 import { useToastStore } from '../stores/toast.store'
 import { DefaultSeo } from 'next-seo'
 import '../styles/globals.css'
+import dynamic from 'next/dynamic'
 
 if (typeof window !== 'undefined') {
   // we only want to call this init function on the frontend, so we check typeof window !== 'undefined'
   SuperTokensReact.init(frontendConfig())
 }
+
+const NoSSRUserId = dynamic(() => import('../components/get-user-id'), {
+  ssr: false,
+})
 
 export default function App({ Component, pageProps }: AppProps) {
   const handleToastChange = useToastStore((s) => s.handleChange)
@@ -35,6 +40,8 @@ export default function App({ Component, pageProps }: AppProps) {
           onOpenChange={handleToastChange}
         />
       </ToastPrimitiveProvider>
+
+      <NoSSRUserId />
     </QueryClientProvider>
   )
 }

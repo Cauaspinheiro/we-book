@@ -23,7 +23,7 @@ export class DeleteDraft {
       throw new NotFoundException('Draft not found')
     }
 
-    if (!draft.writers.find((w) => w.writer.id === writer.id && w.isCreator)) {
+    if (draft.creatorId !== writer.id) {
       throw new ForbiddenException(
         'Cannot delete a draft that you are not the creator',
       )

@@ -2,7 +2,6 @@ import {
   ConflictException,
   ForbiddenException,
   Injectable,
-  InternalServerErrorException,
   NotFoundException,
 } from '@nestjs/common'
 import { Writer } from 'prisma/generated'
@@ -30,29 +29,25 @@ export class RemoveWriterFromDraft {
 
     const draft = await this.draftsRepository.findFirst({
       id: data.draftId,
-      writers: { some: { writerId: writer.id } },
+      contributors: { some: { writerId: writer.id } },
     })
 
     if (!draft) {
       throw new NotFoundException('Draft not found')
     }
 
-    const creator = draft.writers.find((w) => w.isCreator)
+    const { creator } = draft
 
-    if (!creator) {
-      throw new InternalServerErrorException('Not found creator to this draft')
-    }
-
-    if (creator.writer.id !== writer.id) {
+    if (creator.id !== writer.id) {
       throw new ForbiddenException('Only the creator can remove writers')
     }
 
-    if (!draft.writers.find((w) => w.writer.id === data.removedWriterId)) {
+    if (!draft.contributors.find((w) => w.writer.id === data.removedWriterId)) {
       throw new ConflictException('Writer not found in this draft')
     }
 
     const updatedDraft = await this.draftsRepository.update(data.draftId, {
-      writers: {
+      contributors: {
         deleteMany: {
           draftId: data.draftId,
           writerId: data.removedWriterId,
@@ -62,10 +57,7 @@ export class RemoveWriterFromDraft {
 
     return {
       ...updatedDraft,
-      writers: updatedDraft.writers.map(({ writer, isCreator }) => ({
-        ...writer,
-        isCreator,
-      })),
+      contributors: updatedDraft.contributors.map(({ writer }) => writer),
     }
   }
 }

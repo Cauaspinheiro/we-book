@@ -1,11 +1,7 @@
 import { FC } from 'react'
 import styles from './topbar.module.css'
-import dynamic from 'next/dynamic'
 import Link from 'next/link'
-
-const TopbarNavigation = dynamic(() => import('./no-ssr-navigation.topbar'), {
-  ssr: false,
-})
+import { TopbarNavigation } from './navigation.topbar'
 
 const TopbarComponent: FC = () => {
   return (
