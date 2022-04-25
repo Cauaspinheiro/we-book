@@ -8,6 +8,7 @@ declare global {
       SUPERTOKENS_WEBSITE_BASE_PATH: string
       SUPERTOKENS_CONNECTION_URI: string
       API_SECRET: string
+      ACCEPT_ORIGINS: string
     }
   }
 }

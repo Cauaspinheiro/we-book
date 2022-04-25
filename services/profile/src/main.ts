@@ -6,10 +6,12 @@ import cookieParser from 'cookie-parser'
 async function bootstrap() {
   const app = await NestFactory.create(AppModule)
 
-  app.connectMicroservice(profileQueue)
-
+  const origins = process.env.ACCEPT_ORIGINS.split(',').map((v) => v.trim())
   app.use(cookieParser())
-  app.enableCors({ origin: 'http://192.168.10.146:2500', credentials: true })
+
+  app.enableCors({ origin: origins, credentials: true })
+
+  app.connectMicroservice(profileQueue)
 
   await app.startAllMicroservices()
   await app.listen(25380)
