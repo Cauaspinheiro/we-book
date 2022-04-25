@@ -9,8 +9,8 @@ const GetUserId: FC = () => {
 
   useEffect(() => {
     if (userId !== 'DEFAULT_USER_ID') setUserId(userId)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+    else setUserId(null)
+  }, [setUserId, userId])
 
   return <Fragment />
 }

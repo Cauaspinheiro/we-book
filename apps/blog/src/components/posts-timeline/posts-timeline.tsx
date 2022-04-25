@@ -1,22 +1,23 @@
 import { FC } from 'react'
 import { useQuery } from 'react-query'
 import { Post } from '../../domain/post'
+import { api } from '../../services/api'
 import { PostTimelineItem } from './post-timeline-item'
 
 import styles from './posts-timeline.module.css'
 
 export interface PostsTimelineProps {
   initialPosts: Post[]
-  fetchPostsTimeline: () => Promise<Post[]>
 }
 
-export const PostsTimeline: FC<PostsTimelineProps> = ({
-  initialPosts,
-  fetchPostsTimeline,
-}) => {
+export const PostsTimeline: FC<PostsTimelineProps> = ({ initialPosts }) => {
   const { isLoading, error, data } = useQuery(
     'posts-timeline',
-    fetchPostsTimeline,
+    async () => {
+      const { data } = await api.get<Post[]>('/posts')
+
+      return data
+    },
     {
       initialData: initialPosts,
       staleTime: 1000 * 60,

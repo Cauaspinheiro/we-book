@@ -1,6 +1,7 @@
 import { FC } from 'react'
 import { useQuery } from 'react-query'
 import { UserPost } from '../../domain/user-post'
+import { api } from '../../services/api'
 import { useUserStore } from '../../stores/user.store'
 
 import styles from '../posts-timeline/posts-timeline.module.css'
@@ -8,16 +9,18 @@ import { UserPostsTimelineItem } from './user-posts-timeline-item'
 
 export interface UserPostsTimelineProps {
   initialPosts: UserPost[]
-  fetchPostsTimeline: () => Promise<UserPost[]>
 }
 
 export const UserPostsTimeline: FC<UserPostsTimelineProps> = ({
   initialPosts,
-  fetchPostsTimeline,
 }) => {
   const { isLoading, error, data } = useQuery(
     'user-posts-timeline',
-    fetchPostsTimeline,
+    async () => {
+      const { data } = await api.get<UserPost[]>('/posts/me')
+
+      return data
+    },
     {
       initialData: initialPosts,
       staleTime: 1000 * 60,

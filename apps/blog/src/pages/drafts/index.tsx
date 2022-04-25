@@ -10,24 +10,13 @@ export interface DraftsPageProps {
   drafts: Draft[]
 }
 
-const fetchDraftsTimeline = async (cookie: any = undefined) => {
-  const { data } = await api.get<Draft[]>('/drafts', {
-    headers: { cookie },
-  })
-
-  return data
-}
-
 const DraftsPage: NextPage<DraftsPageProps> = ({ drafts }) => {
   return (
     <div className={styles.drafts_container}>
       <Topbar />
 
       <div className={styles.drafts_content_container}>
-        <DraftsTimeline
-          initialDrafts={drafts}
-          fetchDraftsTimeline={fetchDraftsTimeline}
-        />
+        <DraftsTimeline initialDrafts={drafts} />
       </div>
     </div>
   )
@@ -37,7 +26,9 @@ export const getServerSideProps: GetServerSideProps<DraftsPageProps> = async (
   ctx,
 ) => {
   try {
-    const drafts = await fetchDraftsTimeline(ctx.req.headers.cookie)
+    const { data: drafts } = await api.get<Draft[]>('drafts', {
+      headers: { cookie: String(ctx.req.headers.cookie) },
+    })
 
     return { props: { drafts } }
   } catch (error) {

@@ -1,6 +1,7 @@
 import { FC } from 'react'
 import { useQuery } from 'react-query'
 import { Draft } from '../../domain/draft'
+import { api } from '../../services/api'
 import { useUserStore } from '../../stores/user.store'
 
 import styles from '../posts-timeline/posts-timeline.module.css'
@@ -8,16 +9,16 @@ import { DraftsTimelineItem } from './drafts-timeline-item'
 
 export interface DraftsTimelineProps {
   initialDrafts: Draft[]
-  fetchDraftsTimeline: () => Promise<Draft[]>
 }
 
-export const DraftsTimeline: FC<DraftsTimelineProps> = ({
-  initialDrafts,
-  fetchDraftsTimeline,
-}) => {
+export const DraftsTimeline: FC<DraftsTimelineProps> = ({ initialDrafts }) => {
   const { isLoading, error, data } = useQuery(
     'drafts-timeline',
-    fetchDraftsTimeline,
+    async () => {
+      const { data } = await api.get<Draft[]>('drafts')
+
+      return data
+    },
     {
       initialData: initialDrafts,
       staleTime: 1000 * 60,
