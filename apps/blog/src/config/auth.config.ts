@@ -3,9 +3,9 @@ import SessionReact from 'supertokens-auth-react/recipe/session'
 
 export const appInfo = {
   // learn more about this on https://supertokens.com/docs/emailpassword/appinfo
-  appName: 'Blog Auth',
-  apiDomain: 'http://192.168.10.146:2580',
-  websiteDomain: 'http://192.168.10.146:2500',
+  appName: process.env.NEXT_PUBLIC_SUPERTOKENS_APP_NAME,
+  apiDomain: process.env.NEXT_PUBLIC_API_DOMAIN,
+  websiteDomain: process.env.NEXT_PUBLIC_SUPERTOKENS_WEBSITE_DOMAIN,
   apiBasePath: '/auth',
   websiteBasePath: '/auth',
 }
