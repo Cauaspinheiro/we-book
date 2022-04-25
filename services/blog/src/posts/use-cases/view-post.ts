@@ -5,10 +5,14 @@ import {
 } from '@nestjs/common'
 import { User } from 'prisma/generated'
 import { PostsRepository } from '../infra/posts.repository'
+import { PostsRMQGateway } from '../posts-rmq.gateway'
 
 @Injectable()
 export class ViewPost {
-  constructor(private postsRepository: PostsRepository) {}
+  constructor(
+    private postsRepository: PostsRepository,
+    private postsRMQGateway: PostsRMQGateway,
+  ) {}
 
   async run(user: User, postId: string) {
     const post = await this.postsRepository.findFirst({ id: postId })
@@ -33,6 +37,14 @@ export class ViewPost {
 
     await this.postsRepository.update(postId, {
       viewers: { create: { viewerId: user.id } },
+    })
+
+    this.postsRMQGateway.onNewPostView({
+      viewerId: user.id,
+      postWritersIds: [
+        post.publisherId,
+        ...post.contributors.map(({ contributorId }) => contributorId),
+      ],
     })
   }
 }

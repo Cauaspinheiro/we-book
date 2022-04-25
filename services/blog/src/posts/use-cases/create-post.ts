@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common'
 import { CreatePostDTO } from '../domain/create-post.dto'
 import { OnPostPublishedDTO } from '../domain/on-post-published.dto'
 import { PostsRepository } from '../infra/posts.repository'
+import { PostsRMQGateway } from '../posts-rmq.gateway'
 import { GeneratePostUrlPath } from './generate-post-url-path'
 
 @Injectable()
@@ -9,6 +10,7 @@ export class CreatePost {
   constructor(
     private postsRepository: PostsRepository,
     private generatePostUrlPath: GeneratePostUrlPath,
+    private postsRMQGateway: PostsRMQGateway,
   ) {}
 
   async run(data: CreatePostDTO): Promise<OnPostPublishedDTO> {
@@ -51,6 +53,13 @@ export class CreatePost {
         },
       },
     })
+
+    if (!existPost) {
+      this.postsRMQGateway.onNewPost({
+        contributorsIds: data.contributorsIds,
+        publisherId: post.publisherId,
+      })
+    }
 
     return { id: post.id, urlPath }
   }

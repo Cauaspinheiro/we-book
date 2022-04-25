@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common'
 import { UsersModule } from 'src/users/users.module'
 import { PostsRepository } from './infra/posts.repository'
+import { PostsRMQGateway } from './posts-rmq.gateway'
 import { PostsController } from './posts.controller'
 import { PostsEvents } from './posts.events'
 import { CreatePost } from './use-cases/create-post'
@@ -25,6 +26,7 @@ import { ViewPost } from './use-cases/view-post'
     DeletePost,
     RemoveDraftFromPost,
     GeneratePostUrlPath,
+    PostsRMQGateway,
   ],
   controllers: [PostsEvents, PostsController],
   imports: [UsersModule],

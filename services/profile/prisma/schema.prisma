@@ -19,5 +19,11 @@ model Profile {
 
   createdAt DateTime
 
+  totalViews         Int @default(0)
+  totalPublications  Int @default(0)
+  totalContributions Int @default(0)
+  totalPostsViewed   Int @default(0)
+
+
   @@map("profiles")
 }

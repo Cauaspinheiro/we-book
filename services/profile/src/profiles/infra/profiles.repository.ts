@@ -17,4 +17,15 @@ export class ProfilesRepository {
 
     return result
   }
+
+  updateQuery(id: string, data: Prisma.ProfileUpdateInput) {
+    return this.repo.profile.update({ where: { id }, data })
+  }
+
+  updateManyQuery(
+    where: Prisma.ProfileWhereInput,
+    data: Prisma.ProfileUpdateInput,
+  ) {
+    return this.repo.profile.updateMany({ where, data })
+  }
 }

@@ -11,10 +11,12 @@
 
   - [x] Listar posts que nem na home só que apenas os do usuário (publisher ou contribuinte)
 
-- [ ] Página de perfil
+- [x] Página de perfil
 
-- [ ] Páginas de drafts
+- [x] Páginas de drafts
 - [ ] Página de draft
+  - [ ] Criar draft
+  - [ ] Editar draft
 - [ ] Customizar toda a UI do supertokens (páginas de auth e emails)
 
 ### Backend
@@ -25,13 +27,13 @@
   - SEO-url (gerar automaticamente com o titulo caso n seja provido)
   - Descrição
   - OG image (apenas URL)
-- [ ] CORS via Nginx e melhorar toda a configuração (remover configs hard-coded)
-- [ ] Adicionar features do serviço de profile
+- [x] CORS via Nginx e melhorar toda a configuração (remover configs hard-coded)
+- [x] Adicionar features do serviço de profile
 
-  - [ ] Quantidade de views totais dos seus posts
-  - [ ] Quantidade de posts publicados
-  - [ ] Quantidade de posts contribuídos
-  - [ ] Quantidade de posts vistos
+  - [x] Quantidade de views totais dos seus posts
+  - [x] Quantidade de posts publicados
+  - [x] Quantidade de posts contribuídos
+  - [x] Quantidade de posts vistos
 
 - [x] Deletar post e draft
 - [x] Upsert de post quando publicar draft
@@ -46,6 +48,7 @@
 - [ ] Melhoria de UI?
   - [ ] Favicon
   - [ ] Adicionar confirmação mais bonita do que a nativa na hora de deletar
+  - [ ] Melhoria de styles e componentes
 - [ ] Publicar agendado para blog service
 - [ ] Realtime update e save de drafts
 - [ ] Recovery de dead-lettering (principalmente para messages de users que não existiam)

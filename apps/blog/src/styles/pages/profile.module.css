@@ -1,0 +1,54 @@
+.profile_container {
+  @apply flex flex-col items-center justify-center min-h-screen w-full h-full
+   bg-gray-900 mx-auto md:px-0 px-4
+}
+
+.profile_content_container {
+  @apply flex flex-col max-w-5xl w-full h-full flex-1 py-16 items-stretch text-slate-100;
+}
+
+.profile_title {
+  @apply text-5xl font-bold text-center text-slate-100
+}
+
+.profile_header_container {
+  @apply flex flex-col gap-10;
+}
+
+.profile_email_creation_container {
+  @apply flex w-full items-baseline justify-around max-w-2xl mx-auto;
+}
+
+.profile_info_heading {
+  @apply text-sm font-medium text-slate-400;
+}
+.profile_info_value {
+  @apply text-base font-bold text-slate-100;
+}
+
+.profile_info_container {
+  @apply flex flex-col gap-1.5 min-w-max text-center;
+}
+
+.profile_usage_info_container {
+  @apply flex flex-wrap py-16 justify-between items-center;
+}
+
+.profile_actions_container {
+  @apply w-full flex flex-col gap-8;
+}
+
+.profile_actions_title {
+  @apply text-2xl font-semibold text-slate-100;
+}
+
+.profile_actions_item_container {}
+
+.profile_action {
+  @apply flex items-center px-6 h-9 gap-1 rounded-md font-bold
+bg-blue-600 hover:bg-blue-700 transition-colors;
+}
+
+.profile_icon {
+  @apply w-6 h-6 md:w-5 md:h-5
+}

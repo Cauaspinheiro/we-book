@@ -7,6 +7,8 @@ import { ValidateSession } from './use-cases/validate-session'
 import { ProfilesController } from './profiles.controller'
 import { ProfilesEvents } from './profiles.events'
 import { ProfilesRMQGateway } from './profiles-rmq.gateway'
+import { AddNewPostCount } from './use-cases/add-new-post-count'
+import { AddNewPostViewCount } from './use-cases/add-new-post-view-count'
 
 @Module({
   controllers: [ProfilesEvents, ProfilesController],
@@ -17,6 +19,8 @@ import { ProfilesRMQGateway } from './profiles-rmq.gateway'
     GetProfile,
     SessionGuard,
     ProfilesRMQGateway,
+    AddNewPostCount,
+    AddNewPostViewCount,
   ],
   exports: [ValidateSession, GetProfile, SessionGuard],
 })
