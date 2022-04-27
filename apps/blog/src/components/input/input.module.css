@@ -1,0 +1,28 @@
+.input_container {
+  @apply relative w-full;
+}
+
+.input_label {
+  @apply text-sm font-semibold text-slate-200;
+}
+
+.input {
+  @apply w-full px-3 py-2 mt-1 text-sm border-2 border-gray-500 rounded bg-slate-700 text-white;
+}
+
+.text_area_resize_none {
+  @apply resize-none h-36;
+}
+
+.text_area_resize_large, .text_area_resize_infinite {
+  @apply resize-y;
+
+  min-height: 44px;
+  height: 144px;
+  max-height: 32vh;
+}
+
+.text_area_resize_infinite {
+  max-height: none;
+}
+

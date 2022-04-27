@@ -1,0 +1,19 @@
+.edit_draft_container {
+  @apply flex items-stretch justify-between w-full h-full gap-4;
+}
+
+.edit_draft_info_container {
+  @apply flex flex-col gap-6 bg-slate-800 p-3 rounded w-2/3;
+}
+
+.edit_draft_info_header {
+  @apply flex gap-4 w-full;
+}
+
+.edit_draft_aside {
+  @apply flex-1 bg-slate-800 p-3 rounded w-full h-full;
+}
+
+.edit_draft_aside_header {
+  @apply flex justify-between;
+}

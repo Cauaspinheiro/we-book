@@ -14,13 +14,13 @@
     "ct": "lint-staged -v && git-cz --no-verify"
   },
   "devDependencies": {
-    "turbo": "latest",
     "@commitlint/cli": "^16.1.0",
     "@commitlint/config-conventional": "^16.0.0",
     "@commitlint/cz-commitlint": "^16.1.0",
     "commitizen": "^4.2.4",
     "lint-staged": "^12.3.2",
-    "prettier": "^2.5.1"
+    "prettier": "^2.5.1",
+    "turbo": "latest"
   },
   "lint-staged": {
     "**/*.ts?(x)": [
@@ -32,5 +32,8 @@
     "npm": ">=7.0.0",
     "node": ">=14.0.0"
   },
-  "packageManager": "yarn@1.22.18"
+  "packageManager": "yarn@1.22.18",
+  "dependencies": {
+    "yarn": "^1.22.18"
+  }
 }

@@ -24,3 +24,8 @@ body::-webkit-scrollbar-thumb {
 body::-webkit-scrollbar-thumb:hover {
   @apply bg-neutral-700;
 }
+
+.primary-button {
+  @apply flex items-center px-6 h-9 gap-1 rounded-md font-bold
+bg-blue-600 hover:bg-blue-700 transition-colors text-white
+}

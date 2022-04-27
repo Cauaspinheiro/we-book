@@ -19,6 +19,7 @@ export class DraftsRepository {
     const result = await this.repo.draft.findMany({
       where,
       include: this.INCLUDE_WRITERS_TO_DRAFT,
+      orderBy: { createdAt: 'desc' },
     })
 
     return result

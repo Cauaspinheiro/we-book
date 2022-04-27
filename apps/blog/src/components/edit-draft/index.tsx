@@ -1,30 +1,55 @@
-import { FC } from 'react'
+import { FC, useState } from 'react'
+import Input from '../input'
+import TextArea from '../input/text-area'
+
+import styles from './edit-draft.module.css'
+import NewDraftHeader from './new-draft-header'
 
 export const EditDraft: FC = () => {
-  // TITULO
-  // DESCRIÇÃO
-  // OG IMAGE (URL INPUT)
-  // ADICIONAR CONTRIBUIDOR (POR EMAIL)
-  // CONTENT (RICH TEXT EDITOR)
-  // REMOVER CONTRIBUIDOR (SELECT)
+  const [title, setTitle] = useState('')
+  const [cover, setCover] = useState('')
+  const [description, setDescription] = useState('')
+  const [content, setContent] = useState('')
 
   return (
-    <div>
-      <input type="text" placeholder="Titulo" />
+    <div className={styles.edit_draft_container}>
+      <div className={styles.edit_draft_info_container}>
+        <div className={styles.edit_draft_info_header}>
+          <Input id="title" label="Título" value={title} setValue={setTitle} />
 
-      <div>
-        <textarea placeholder="Description" />
-
-        <input type="url" placeholder="OG image" />
-
-        <div>
-          <input type="email" placeholder="Adicionar contribuidor" />
-
-          <span>Remover contribuidor</span>
+          <Input
+            type="url"
+            label="Link cover"
+            id="cover"
+            value={cover}
+            setValue={setCover}
+          />
         </div>
+
+        <TextArea
+          label="Descrição"
+          id="description"
+          value={description}
+          setValue={setDescription}
+        />
+
+        <TextArea
+          label="Conteúdo"
+          id="content"
+          resize="infinite"
+          value={content}
+          setValue={setContent}
+        />
       </div>
 
-      <div>Rich editor</div>
+      <aside className={styles.edit_draft_aside}>
+        <NewDraftHeader
+          description={description}
+          title={title}
+          content={content}
+          cover={cover}
+        />
+      </aside>
     </div>
   )
 }
