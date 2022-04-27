@@ -1,15 +1,22 @@
 import { FC, useState } from 'react'
+import { Draft } from '../../domain/draft'
 import Input from '../input'
 import TextArea from '../input/text-area'
 
 import styles from './edit-draft.module.css'
+import ExistingDraftHeader from './existing-draft-header'
 import NewDraftHeader from './new-draft-header'
 
-export const EditDraft: FC = () => {
-  const [title, setTitle] = useState('')
-  const [cover, setCover] = useState('')
-  const [description, setDescription] = useState('')
-  const [content, setContent] = useState('')
+export interface EditDraftProps {
+  draft?: Draft
+}
+
+export const EditDraft: FC<EditDraftProps> = ({ draft }) => {
+  const [title, setTitle] = useState(draft?.title || '')
+  const [cover, setCover] = useState(draft?.ogCover || '')
+  const [urlPath, setUrlPath] = useState(draft?.urlPath || '')
+  const [description, setDescription] = useState(draft?.description || '')
+  const [content, setContent] = useState(draft?.content || '')
 
   return (
     <div className={styles.edit_draft_container}>
@@ -25,6 +32,14 @@ export const EditDraft: FC = () => {
             setValue={setCover}
           />
         </div>
+
+        <Input
+          type="url"
+          label="Caminho do post"
+          id="uri"
+          value={urlPath}
+          setValue={setUrlPath}
+        />
 
         <TextArea
           label="Descrição"
@@ -43,12 +58,24 @@ export const EditDraft: FC = () => {
       </div>
 
       <aside className={styles.edit_draft_aside}>
-        <NewDraftHeader
-          description={description}
-          title={title}
-          content={content}
-          cover={cover}
-        />
+        {draft?.id ? (
+          <ExistingDraftHeader
+            description={description}
+            title={title}
+            content={content}
+            ogCover={cover}
+            id={draft.id}
+            urlPath={urlPath}
+          />
+        ) : (
+          <NewDraftHeader
+            description={description}
+            title={title}
+            content={content}
+            ogCover={cover}
+            urlPath={urlPath}
+          />
+        )}
       </aside>
     </div>
   )

@@ -16,6 +16,7 @@ import { UpdateDraftValidator } from './infra/validation/update-draft.validator'
 import { AddWriterToDraft } from './use-cases/add-writer-to-draft'
 import { CreateDraft } from './use-cases/create-draft'
 import { DeleteDraft } from './use-cases/delete-draft'
+import { FindDraft } from './use-cases/find-draft'
 import { GetDrafts } from './use-cases/get-drafts'
 import { PublishDraft } from './use-cases/publish-draft'
 import { RemoveWriterFromDraft } from './use-cases/remove-writer-from-draft'
@@ -32,6 +33,7 @@ export class DraftsController {
     private updateDraft: UpdateDraft,
     private deleteDraft: DeleteDraft,
     private publishDraft: PublishDraft,
+    private findDraft: FindDraft,
   ) {}
 
   @Post()
@@ -88,5 +90,10 @@ export class DraftsController {
   @Post('/:id/publish')
   async publish(@UseWriter() writer: Writer, @Param('id') id: string) {
     return await this.publishDraft.run(writer, id)
+  }
+
+  @Get('/:id')
+  async find(@UseWriter() writer: Writer, @Param('id') id: string) {
+    return await this.findDraft.run(writer, id)
   }
 }

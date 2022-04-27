@@ -6,6 +6,7 @@ import { DraftsRepository } from './infra/drafts.repository'
 import { AddWriterToDraft } from './use-cases/add-writer-to-draft'
 import { CreateDraft } from './use-cases/create-draft'
 import { DeleteDraft } from './use-cases/delete-draft'
+import { FindDraft } from './use-cases/find-draft'
 import { GetDrafts } from './use-cases/get-drafts'
 import { PublishDraft } from './use-cases/publish-draft'
 import { RemoveWriterFromDraft } from './use-cases/remove-writer-from-draft'
@@ -22,6 +23,7 @@ import { UpdateDraft } from './use-cases/update-draft'
     DeleteDraft,
     PublishDraft,
     DraftsRMQGateway,
+    FindDraft,
   ],
   imports: [WritersModule],
   controllers: [DraftsController],
