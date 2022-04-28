@@ -44,14 +44,14 @@ export class DraftsController {
     return await this.createDraft.run(createDraftDTO, writer)
   }
 
-  @Post('/:draftId/writers/add/:writerId')
+  @Post('/:draftId/writers/add')
   async addWriter(
     @UseWriter() writer: Writer,
     @Param('draftId') draftId: string,
-    @Param('writerId') writerId: string,
+    @Body('email') email: string,
   ) {
     return await this.addWriterToDraft.run(writer, {
-      addedWriterId: writerId,
+      addedWriterEmail: email,
       draftId,
     })
   }

@@ -1,12 +1,10 @@
 import { FC, MouseEvent, useEffect, useState } from 'react'
 import { Post } from '../../domain/post'
 import styles from './posts-timeline.module.css'
-import { PencilIcon, ShareIcon, TrashIcon } from '@heroicons/react/solid'
+import { ShareIcon } from '@heroicons/react/solid'
 import Link from 'next/link'
-import {} from 'next'
+
 import { useToastStore } from '../../stores/toast.store'
-import { api } from '../../services/api'
-import { useRouter } from 'next/router'
 
 export interface PostTimelineItemProps {
   post: Post
@@ -15,7 +13,6 @@ export interface PostTimelineItemProps {
 
 export const PostTimelineItem: FC<PostTimelineItemProps> = ({ post }) => {
   const toast = useToastStore((v) => v.toast)
-  const router = useRouter()
 
   const [isSafeContext, setIsSafeContext] = useState(true)
 
@@ -36,24 +33,6 @@ export const PostTimelineItem: FC<PostTimelineItemProps> = ({ post }) => {
     toast({
       title: 'Link copiado!',
     })
-  }
-
-  const handleDelete = async (e: MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault()
-    e.stopPropagation()
-
-    if (!confirm('Deseja deletar esse post mesmo? Essa ação é irreversível')) {
-      return
-    }
-
-    try {
-      await api.delete(`/posts/${post.id}`)
-
-      // need to reload to find posts in the server-side
-      router.reload()
-    } catch (error) {
-      toast({ title: 'Algo deu errado!', description: String(error) })
-    }
   }
 
   return (

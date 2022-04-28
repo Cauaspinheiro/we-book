@@ -19,21 +19,18 @@ export class RemoveWriterFromDraft {
     writer: Writer,
     data: { removedWriterId: string; draftId: string },
   ) {
+    const draft = await this.draftsRepository.findFirst({ id: data.draftId })
+
+    if (!draft) {
+      throw new NotFoundException('Draft not found')
+    }
+
     const removedWriter = await this.writersRepository.findFirst({
       id: data.removedWriterId,
     })
 
     if (!removedWriter) {
-      throw new NotFoundException('Not found writer to be added')
-    }
-
-    const draft = await this.draftsRepository.findFirst({
-      id: data.draftId,
-      contributors: { some: { writerId: writer.id } },
-    })
-
-    if (!draft) {
-      throw new NotFoundException('Draft not found')
+      throw new NotFoundException('Not found writer to be removed')
     }
 
     const { creator } = draft

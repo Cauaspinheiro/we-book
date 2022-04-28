@@ -15,9 +15,12 @@ export class AddWriterToDraft {
     private writersRepository: WritersRepository,
   ) {}
 
-  async run(writer: Writer, data: { addedWriterId: string; draftId: string }) {
+  async run(
+    writer: Writer,
+    data: { addedWriterEmail: string; draftId: string },
+  ) {
     const addedWriter = await this.writersRepository.findFirst({
-      id: data.addedWriterId,
+      email: data.addedWriterEmail,
     })
 
     if (!addedWriter) {
@@ -39,14 +42,14 @@ export class AddWriterToDraft {
     }
 
     if (
-      draft.contributors.find((w) => w.writer.id === data.addedWriterId) ||
-      draft.creatorId === data.addedWriterId
+      draft.contributors.find((w) => w.writer.id === addedWriter.id) ||
+      draft.creatorId === addedWriter.id
     ) {
       throw new ConflictException('Writer already added to this draft')
     }
 
     const updatedDraft = await this.draftsRepository.update(data.draftId, {
-      contributors: { create: { writerId: data.addedWriterId } },
+      contributors: { create: { writerId: addedWriter.id } },
     })
 
     return {

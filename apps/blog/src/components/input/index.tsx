@@ -8,6 +8,7 @@ export interface InputProps {
   id: string
   value: string
   setValue(value: string): void
+  placeholder?: string
 }
 
 const Input: FC<InputProps> = (props) => {
@@ -23,6 +24,7 @@ const Input: FC<InputProps> = (props) => {
         type={props.type || 'text'}
         onChange={(e) => props.setValue(e.target.value)}
         value={props.value}
+        placeholder={props.placeholder}
       />
     </div>
   )

@@ -1,5 +1,6 @@
 import { FC, useState } from 'react'
 import { Draft } from '../../domain/draft'
+import { useUserStore } from '../../stores/user.store'
 import Input from '../input'
 import TextArea from '../input/text-area'
 
@@ -17,6 +18,7 @@ export const EditDraft: FC<EditDraftProps> = ({ draft }) => {
   const [urlPath, setUrlPath] = useState(draft?.urlPath || '')
   const [description, setDescription] = useState(draft?.description || '')
   const [content, setContent] = useState(draft?.content || '')
+  const userId = useUserStore((s) => s.userId)
 
   return (
     <div className={styles.edit_draft_container}>
@@ -66,6 +68,8 @@ export const EditDraft: FC<EditDraftProps> = ({ draft }) => {
             ogCover={cover}
             id={draft.id}
             urlPath={urlPath}
+            contributors={draft.contributors}
+            isCreator={draft.creator.id === userId}
           />
         ) : (
           <NewDraftHeader

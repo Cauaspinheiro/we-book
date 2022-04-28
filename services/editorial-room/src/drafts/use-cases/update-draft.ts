@@ -37,7 +37,9 @@ export class UpdateDraft {
 
       const sameUrlPath = await this.draftsRepository.findFirst({ urlPath })
 
-      if (sameUrlPath) {
+      // if the sameUrlPath id and the draft id are equal
+      // the user is just updating the draft
+      if (sameUrlPath && sameUrlPath.id !== draft.id) {
         throw new ConflictException('Draft with this path already created')
       }
     }

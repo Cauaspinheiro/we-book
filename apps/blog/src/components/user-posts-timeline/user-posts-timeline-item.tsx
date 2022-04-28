@@ -72,7 +72,7 @@ export const UserPostsTimelineItem: FC<UserPostsTimelineItemProps> = ({
 
           <div className={styles.timeline_item_manage_container}>
             {post.hasDraft && (
-              <Link href={`/drafts/${post.urlPath}/edit`}>
+              <Link href={`/drafts/${post.id}/edit`}>
                 <a className={styles.timeline_item_manage_item}>
                   <PencilIcon className={styles.timeline_item_manage_icon} />
                 </a>

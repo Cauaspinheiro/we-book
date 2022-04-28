@@ -25,6 +25,9 @@ export class FindDraft {
       throw new ForbiddenException('Not able to get this draft')
     }
 
-    return draft
+    return {
+      ...draft,
+      contributors: draft.contributors.map(({ writer }) => writer),
+    }
   }
 }
