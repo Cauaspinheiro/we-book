@@ -28,7 +28,6 @@ const PostPage: NextPage<PostPageProps> = ({ post, html }) => {
       <NextSeo
         title={`${post.title} - WeBook`}
         description={post.description}
-        openGraph={{ images: [{ url: post.ogCover }] }}
       />
 
       <Topbar />

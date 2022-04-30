@@ -29,8 +29,8 @@ export class PublishDraft {
       )
     }
 
-    if (!draft.description || !draft.ogCover) {
-      throw new BadRequestException('Missing draft information')
+    if (!draft.description) {
+      throw new BadRequestException('Missing draft description')
     }
 
     const payload: PublishDraftDTO = {
@@ -38,7 +38,6 @@ export class PublishDraft {
       id: draft.id,
       publisherId: draft.creator.id,
       description: draft.description,
-      ogCover: draft.ogCover,
       title: draft.title,
       urlPath: draft.urlPath,
       contributorsIds: this.getContributorsFromDraft(draft.contributors),

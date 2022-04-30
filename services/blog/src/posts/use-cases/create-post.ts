@@ -43,7 +43,6 @@ export class CreatePost {
       id: data.id,
       content: data.content,
       description: data.description,
-      ogCover: data.ogCover,
       title: data.title,
       urlPath,
       publisher: { connect: { id: data.publisherId } },

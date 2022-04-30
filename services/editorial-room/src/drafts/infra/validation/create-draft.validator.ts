@@ -2,7 +2,6 @@ import { CreateDraftDTO } from 'src/drafts/domain/create-draft.dto'
 import {
   IsNotEmpty,
   IsOptional,
-  IsUrl,
   Matches,
   MaxLength,
   MinLength,
@@ -19,10 +18,6 @@ export class CreateDraftValidator implements CreateDraftDTO {
   @IsOptional()
   @IsNotEmpty()
   description?: string | undefined
-
-  @IsOptional()
-  @IsUrl()
-  ogCover?: string | undefined
 
   @IsOptional()
   @Matches(/^[_A-z0-9]*((-|\s)*[_A-z0-9])*$/)

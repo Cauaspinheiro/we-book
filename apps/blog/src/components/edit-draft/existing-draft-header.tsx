@@ -18,7 +18,6 @@ export interface ExistingDraftHeaderProps {
   content: string
   title: string
   description: string
-  ogCover: string
   id: string
   urlPath: string
   contributors: DraftUser[]

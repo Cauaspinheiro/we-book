@@ -19,11 +19,11 @@ export class GeneratePostUrlPath {
 
   private formatTitleToUrl(title: string) {
     return title
-      .trim()
       .toLowerCase()
       .normalize('NFD') // Remove accents from string pt1
       .replace(/[\u0300-\u036f]/g, '') // Remove accents from string pt2
       .replace(/[^a-zA-Z0-9- ]/g, '') // Remove all special characters
+      .trim()
       .split(' ')
       .join('-')
   }

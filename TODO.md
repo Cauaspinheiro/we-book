@@ -14,9 +14,10 @@
 - [x] Página de perfil
 
 - [x] Páginas de drafts
-- [ ] Página de draft
-  - [ ] Criar draft
-  - [ ] Editar draft
+- [x] Página de draft
+  - [x] Criar draft
+  - [x] Editar draft
+  - [ ] Remover informações de publicar e adicionar writer em página de contributor
 - [ ] Customizar toda a UI do supertokens (páginas de auth e emails)
 
 ### Backend
@@ -43,13 +44,14 @@
 
 ## Melhorias (opcionais)
 
-- [ ] Pagination em home e posts
-- [ ] Redirections de posts antigos
 - [ ] Melhoria de UI?
   - [ ] Favicon
   - [ ] Adicionar confirmação mais bonita do que a nativa na hora de deletar
   - [ ] Melhoria de styles e componentes
+- [ ] Recovery de dead-lettering (principalmente para messages de users que não existiam)
+
+- [ ] Pagination em home e posts
+- [ ] Redirections de posts antigos
 - [ ] Publicar agendado para blog service
 - [ ] Realtime update e save de drafts
-- [ ] Recovery de dead-lettering (principalmente para messages de users que não existiam)
 - [ ] Melhoria de configuração do API Gateway (Nginx)

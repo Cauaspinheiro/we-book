@@ -3,5 +3,4 @@ export interface CreateDraftDTO {
   title: string
   description?: string
   urlPath?: string
-  ogCover?: string
 }

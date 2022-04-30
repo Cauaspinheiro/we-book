@@ -33,7 +33,6 @@ model Draft {
   title       String
   description String?
   urlPath     String? @unique
-  ogCover     String?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

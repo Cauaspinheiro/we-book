@@ -14,7 +14,6 @@ export interface EditDraftProps {
 
 export const EditDraft: FC<EditDraftProps> = ({ draft }) => {
   const [title, setTitle] = useState(draft?.title || '')
-  const [cover, setCover] = useState(draft?.ogCover || '')
   const [urlPath, setUrlPath] = useState(draft?.urlPath || '')
   const [description, setDescription] = useState(draft?.description || '')
   const [content, setContent] = useState(draft?.content || '')
@@ -28,20 +27,12 @@ export const EditDraft: FC<EditDraftProps> = ({ draft }) => {
 
           <Input
             type="url"
-            label="Link cover"
-            id="cover"
-            value={cover}
-            setValue={setCover}
+            label="Caminho do post"
+            id="uri"
+            value={urlPath}
+            setValue={setUrlPath}
           />
         </div>
-
-        <Input
-          type="url"
-          label="Caminho do post"
-          id="uri"
-          value={urlPath}
-          setValue={setUrlPath}
-        />
 
         <TextArea
           label="Descrição"
@@ -65,7 +56,6 @@ export const EditDraft: FC<EditDraftProps> = ({ draft }) => {
             description={description}
             title={title}
             content={content}
-            ogCover={cover}
             id={draft.id}
             urlPath={urlPath}
             contributors={draft.contributors}
@@ -76,7 +66,6 @@ export const EditDraft: FC<EditDraftProps> = ({ draft }) => {
             description={description}
             title={title}
             content={content}
-            ogCover={cover}
             urlPath={urlPath}
           />
         )}

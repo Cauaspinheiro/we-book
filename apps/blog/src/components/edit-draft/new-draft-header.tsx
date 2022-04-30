@@ -13,7 +13,6 @@ export interface NewDraftHeaderProps {
   content: string
   title: string
   description: string
-  ogCover: string
   urlPath: string
 
   children?: undefined

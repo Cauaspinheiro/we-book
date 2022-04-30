@@ -13,7 +13,6 @@ export interface Draft {
   title: string
   description?: string
   urlPath?: string
-  ogCover?: string
   creator: DraftUser
   contributors: DraftUser[]
 }

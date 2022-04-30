@@ -13,7 +13,6 @@ export interface Post {
   title: string
   description: string
   urlPath: string
-  ogCover: string
   publisher: PostUser
   contributors: PostUser[]
   viewersCount: number

@@ -35,7 +35,6 @@ model Post {
   title       String
   description String
   urlPath     String @unique
-  ogCover     String
 
   hasDraft Boolean @default(true)
 
