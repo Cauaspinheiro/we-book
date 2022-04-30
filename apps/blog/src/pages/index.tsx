@@ -1,9 +1,8 @@
 import { GetServerSideProps, NextPage } from 'next'
+import PageContainer from '../components/page-container'
 import PostsTimeline from '../components/posts-timeline'
-import Topbar from '../components/topbar'
 import { Post } from '../domain/post'
 import { api } from '../services/api'
-import styles from '../styles/pages/home.module.css'
 
 export interface HomePageProps {
   posts: Post[]
@@ -11,13 +10,9 @@ export interface HomePageProps {
 
 const HomePage: NextPage<HomePageProps> = ({ posts }) => {
   return (
-    <div className={styles.home_container}>
-      <Topbar />
-
-      <div className={styles.home_content_container}>
-        <PostsTimeline initialPosts={posts} />
-      </div>
-    </div>
+    <PageContainer>
+      <PostsTimeline initialPosts={posts} />
+    </PageContainer>
   )
 }
 

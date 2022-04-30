@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, Fragment } from 'react'
 
 import {
   PlusIcon,
@@ -9,16 +9,11 @@ import {
 
 import styles from './topbar.module.css'
 import Link from 'next/link'
-const LoggedNavigationTopbar: FC = () => {
-  return (
-    <div className={styles.topbar_navigation}>
-      <Link href="/drafts/new">
-        <a className={styles.topbar_primary_button}>
-          <PlusIcon className={styles.topbar_icon} />
-          <span>Criar</span>
-        </a>
-      </Link>
+import { PrimaryButtonLink } from '../primary-button/as-link'
 
+export const AuthenticatedNavigation: FC = () => {
+  return (
+    <Fragment>
       <Link href="/posts">
         <a className={styles.topbar_secondary_button}>
           <DocumentTextIcon className={styles.topbar_icon} />
@@ -39,8 +34,13 @@ const LoggedNavigationTopbar: FC = () => {
           <span>Perfil</span>
         </a>
       </Link>
-    </div>
+
+      <Link href="/drafts/new" passHref>
+        <PrimaryButtonLink>
+          <PlusIcon className={styles.topbar_icon} />
+          <span>Criar</span>
+        </PrimaryButtonLink>
+      </Link>
+    </Fragment>
   )
 }
-
-export default LoggedNavigationTopbar

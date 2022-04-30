@@ -14,18 +14,13 @@ body::-webkit-scrollbar {
 }
 
 body::-webkit-scrollbar-track {
-  @apply bg-neutral-900;
+  @apply bg-neutral-800;
 }
 
 body::-webkit-scrollbar-thumb {
-  @apply bg-neutral-800 rounded-sm;
+  @apply bg-neutral-700 rounded-sm;
 }
 
 body::-webkit-scrollbar-thumb:hover {
-  @apply bg-neutral-700;
-}
-
-.primary-button {
-  @apply flex items-center px-6 h-9 gap-1 rounded-md font-bold
-bg-blue-600 hover:bg-blue-700 transition-colors text-white
+  @apply bg-neutral-600;
 }

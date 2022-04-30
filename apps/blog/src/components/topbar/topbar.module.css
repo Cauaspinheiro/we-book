@@ -1,31 +1,34 @@
+.topbar_container {
+  @apply w-full sticky top-0 bg-neutral-900 border-b-zinc-700 border-b
+  px-4;
+}
+
 .topbar {
-  @apply flex w-full h-20 items-center justify-between text-white
-  md:px-20
+  @apply flex w-full h-20 items-center max-w-3xl justify-between 
+  mx-auto
 }
 
 .topbar_title {
-  @apply text-2xl font-bold text-slate-100 tracking-wide;
-}
-
-.topbar_navigation {
-  @apply flex items-center md:gap-10 gap-5;
+  @apply text-2xl font-bold text-white tracking-wide;
 }
 
 .topbar_primary_button {
-  @apply flex items-center aspect-square px-2 h-9 gap-1 rounded-md font-bold
-  md:px-6 md:aspect-auto
-bg-blue-600 hover:bg-blue-700 transition-colors;
+  /* @apply flex items-center aspect-square px-2 h-9 gap-1 rounded-md font-bold
+  sm:px-6 sm:aspect-auto
+bg-blue-600 hover:bg-blue-700 transition-colors text-white; */
+
+  @apply sm:px-6 sm:aspect-auto aspect-square px-2;
 }
 
 .topbar_primary_button span, .topbar_secondary_button span {
-  @apply hidden md:flex
+  @apply hidden sm:flex
 }
 
 .topbar_icon {
-  @apply w-6 h-6 md:w-5 md:h-5
+  @apply w-6 h-6
 }
 
 .topbar_secondary_button {
-  @apply flex items-center gap-2 text-slate-300
-  hover:underline hover:text-slate-400
+  @apply flex items-center gap-2 text-zinc-100
+  hover:underline hover:text-zinc-300 transition-colors
 }
