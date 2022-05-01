@@ -1,9 +1,8 @@
 import { GetServerSideProps, NextPage } from 'next'
-import Topbar from '../components/topbar'
-import { UserPostsTimeline } from '../components/user-posts-timeline'
+import PageContainer from '../components/page-container'
+import { PostsTimeline } from '../components/posts-timeline'
 import { UserPost } from '../domain/user-post'
 import { api } from '../services/api'
-import styles from '../styles/pages/posts.module.css'
 
 export interface MyPostsPageProps {
   posts: UserPost[]
@@ -11,13 +10,9 @@ export interface MyPostsPageProps {
 
 const MyPostsPage: NextPage<MyPostsPageProps> = ({ posts }) => {
   return (
-    <div className={styles.posts_container}>
-      <Topbar />
-
-      <div className={styles.posts_content_container}>
-        <UserPostsTimeline initialPosts={posts} />
-      </div>
-    </div>
+    <PageContainer>
+      <PostsTimeline initialData={posts} />
+    </PageContainer>
   )
 }
 

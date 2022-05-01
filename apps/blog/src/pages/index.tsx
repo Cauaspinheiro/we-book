@@ -1,6 +1,6 @@
 import { GetServerSideProps, NextPage } from 'next'
+import { HomeTimeline } from '../components/home-timeline'
 import PageContainer from '../components/page-container'
-import PostsTimeline from '../components/posts-timeline'
 import { Post } from '../domain/post'
 import { api } from '../services/api'
 
@@ -11,7 +11,7 @@ export interface HomePageProps {
 const HomePage: NextPage<HomePageProps> = ({ posts }) => {
   return (
     <PageContainer>
-      <PostsTimeline initialPosts={posts} />
+      <HomeTimeline initialData={posts} />
     </PageContainer>
   )
 }

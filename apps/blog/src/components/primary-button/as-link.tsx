@@ -1,9 +1,9 @@
-import { FC } from 'react'
-import { PrimaryButtonProps } from './index'
+import { FC, ReactNode } from 'react'
 import styles from './primary-button.module.css'
 
-export interface PrimaryButtonLinkProps extends PrimaryButtonProps {
+export interface PrimaryButtonLinkProps {
   href?: string
+  children: ReactNode
 }
 
 export const PrimaryButtonLink: FC<PrimaryButtonLinkProps> = ({

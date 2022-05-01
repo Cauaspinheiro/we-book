@@ -4,5 +4,5 @@
 }
 
 .page_container_content {
-  @apply flex flex-col max-w-6xl px-4 w-full h-full flex-1 pb-16 mx-auto
+  @apply flex flex-col max-w-5xl px-4 w-full h-full flex-1 pb-16 mx-auto
 }

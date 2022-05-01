@@ -12,6 +12,7 @@
     "@heroicons/react": "^1.0.6",
     "@radix-ui/react-scroll-area": "^0.1.4",
     "@radix-ui/react-toast": "^0.1.1",
+    "classnames": "^2.3.1",
     "next": "12.1.4",
     "next-seo": "^5.4.0",
     "nextjs-cors": "^2.1.1",

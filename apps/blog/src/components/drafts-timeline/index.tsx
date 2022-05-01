@@ -1,71 +1,82 @@
+import { PencilIcon, TrashIcon } from '@heroicons/react/solid'
 import { FC } from 'react'
 import { useQuery } from 'react-query'
 import { Draft } from '../../domain/draft'
 import { api } from '../../services/api'
+import { useToastStore } from '../../stores/toast.store'
 import { useUserStore } from '../../stores/user.store'
-
-import styles from '../posts-timeline/posts-timeline.module.css'
-import { DraftsTimelineItem } from './drafts-timeline-item'
+import { TimelineTemplate } from '../timeline-template'
+import {
+  TimelineTemplateItem,
+  TimelineTemplateItemFooterButton,
+  TimelineTemplateItemFooterLink,
+} from '../timeline-template/timeline-template-item'
 
 export interface DraftsTimelineProps {
-  initialDrafts: Draft[]
+  initialData: Draft[]
 }
 
-export const DraftsTimeline: FC<DraftsTimelineProps> = ({ initialDrafts }) => {
-  const { isLoading, error, data } = useQuery(
+export const DraftsTimeline: FC<DraftsTimelineProps> = ({ initialData }) => {
+  const toast = useToastStore((s) => s.toast)
+  const userId = useUserStore((s) => s.userId)
+
+  const queryData = useQuery(
     'drafts-timeline',
     async () => {
-      const { data } = await api.get<Draft[]>('drafts')
+      const { data } = await api.get<Draft[]>('/drafts')
 
       return data
     },
     {
-      initialData: initialDrafts,
+      initialData,
       staleTime: 1000 * 60,
     },
   )
 
-  const userId = useUserStore((s) => s.userId)
+  const handleDelete = async (id: string) => {
+    if (!confirm('Deseja deletar esse post? Essa ação é irreversível')) {
+      return
+    }
 
-  if (!userId) {
-    return (
-      <div className={styles.timeline_container}>
-        <h1 className={styles.timeline_title}>
-          Você precisa estar logado para ver os seus rascunhos
-        </h1>
-      </div>
-    )
-  }
+    try {
+      await api.delete(`/drafts/${id}`)
 
-  if (isLoading) {
-    return (
-      <div className={styles.timeline_container}>
-        <h1 className={styles.timeline_title}>Carregando...</h1>
-      </div>
-    )
-  }
-
-  if (error || !data) {
-    return (
-      <div className={styles.timeline_container}>
-        <h1 className={styles.timeline_title}>Algo deu errado!</h1>
-      </div>
-    )
-  }
-
-  if (!data.length) {
-    return (
-      <div className={styles.timeline_container}>
-        <h1 className={styles.timeline_title}>Sem nada para ver</h1>
-      </div>
-    )
+      queryData.refetch()
+    } catch (error) {
+      toast({ title: 'Algo deu errado!', description: String(error) })
+    }
   }
 
   return (
-    <div className={styles.timeline_container}>
-      {data.map((draft) => (
-        <DraftsTimelineItem key={draft.id} draft={draft} />
-      ))}
-    </div>
+    <TimelineTemplate
+      {...queryData}
+      renderItem={(post: Draft) => {
+        return (
+          <TimelineTemplateItem
+            key={post.id}
+            item={{
+              createdAt: post.createdAt,
+              creatorName: post.creator.name,
+              description: post.description || 'Sem descrição',
+              title: post.title,
+            }}
+          >
+            <TimelineTemplateItemFooterLink
+              href={`/drafts/${post.id}/edit`}
+              icon={PencilIcon}
+              label="Editar"
+            />
+
+            {post.creator.id === userId && (
+              <TimelineTemplateItemFooterButton
+                onPress={() => handleDelete(post.id)}
+                icon={TrashIcon}
+                label="Deletar"
+              />
+            )}
+          </TimelineTemplateItem>
+        )
+      }}
+    />
   )
 }

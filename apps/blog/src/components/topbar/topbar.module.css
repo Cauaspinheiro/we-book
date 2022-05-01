@@ -8,27 +8,27 @@
   mx-auto
 }
 
+.topbar a {
+  @apply print:hidden first:print:inline-block
+}
+
 .topbar_title {
-  @apply text-2xl font-bold text-white tracking-wide;
-}
-
-.topbar_primary_button {
-  /* @apply flex items-center aspect-square px-2 h-9 gap-1 rounded-md font-bold
-  sm:px-6 sm:aspect-auto
-bg-blue-600 hover:bg-blue-700 transition-colors text-white; */
-
-  @apply sm:px-6 sm:aspect-auto aspect-square px-2;
-}
-
-.topbar_primary_button span, .topbar_secondary_button span {
-  @apply hidden sm:flex
+  @apply text-2xl font-bold font-title text-white tracking-wide;
 }
 
 .topbar_icon {
   @apply w-6 h-6
 }
 
-.topbar_secondary_button {
-  @apply flex items-center gap-2 text-zinc-100
-  hover:underline hover:text-zinc-300 transition-colors
+.topbar_link {
+  @apply flex items-center gap-2 font-title text-zinc-100 transition-colors
+  hover:underline hover:text-zinc-300 
+}
+
+.topbar_link span {
+  @apply hidden sm:flex
+}
+
+.topbar_link_active {
+  @apply text-blue-400 hover:text-blue-400 hover:no-underline;
 }

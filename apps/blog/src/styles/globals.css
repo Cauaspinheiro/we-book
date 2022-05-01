@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  @apply min-h-screen h-full;
+  @apply min-h-screen h-full text-white;
 
   /* RADIX-UI TOAST COMPONENT PADDING */
    --toast-viewport-padding: 32px;

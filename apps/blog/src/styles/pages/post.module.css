@@ -1,60 +1,55 @@
-.post_page_container {
-   @apply flex flex-col items-center justify-center min-h-screen w-full h-full
-   bg-gray-900 mx-auto md:px-0 px-4
-}
-
 .post_container {
-    @apply flex max-w-5xl w-full h-full flex-1 flex-col items-center py-10
-    gap-4 text-slate-200 pb-16;
+  @apply py-20 flex flex-col w-full h-full gap-14;
 }
 
-.post_title {
-  @apply text-5xl font-bold text-center text-slate-100
+.post_heading_container {
+  @apply flex flex-col gap-3 border-b border-b-zinc-700 pb-8;
 }
 
-.post_description {
-  @apply text-lg text-center font-medium text-slate-200 py-8
+.post_heading_title {
+  @apply text-4xl lg:text-5xl lg:leading-snug font-bold font-title tracking-wide;
 }
 
-.post_creators_container {
-  @apply flex flex-col items-center text-center justify-center pt-4 w-full
-  md:gap-10 lg:gap-16 gap-8
-  lg:flex-row lg:items-start lg:text-left
+.post_heading_subtitle {
+  @apply text-lg text-zinc-200 py-2;
 }
 
-.post_creators_heading {
-  @apply text-sm font-medium text-slate-400;
+.post_heading_data_container {
+  @apply flex items-end justify-between py-5
 }
 
-.post_creators_title {
-  @apply text-lg font-bold text-slate-100;
+.post_heading_creator_container {
+  @apply flex flex-col gap-1;
 }
 
-.post_creators_created_at {
-  @apply text-sm font-semibold text-slate-300
+.post_heading_section_heading {
+  @apply text-zinc-400 font-body font-medium text-sm;
 }
 
-.post_publisher_centered {
-  @apply text-center;
+.post_heading_creator {
+  @apply text-white font-title font-semibold text-lg
 }
 
-.post_publisher_container {
-  @apply flex flex-col gap-2 min-w-max;
+.post_heading_created_at {
+  @apply text-zinc-200 font-body
+}
+
+.post_content {
+  @apply prose prose-invert
 }
 
 .post_contributors_container {
-  @apply flex flex-col md:flex-row items-end justify-start gap-3 md:gap-6 flex-wrap
+  @apply flex flex-col gap-3
 }
 
-.post_created_at {
-  @apply text-slate-400 text-center text-sm font-semibold;
+.post_contributors {
+  @apply flex gap-y-3 gap-x-5 items-center flex-wrap font-medium text-white font-title
 }
 
-.post_divider {
-  @apply w-5/6 h-px border-slate-700 my-8;
+.post_footer_container {
+  @apply w-max
 }
 
-.post_content_container {
-  @apply prose flex-1 py-5 prose-invert w-full;
+.post_footer_icon {
+  @apply w-4 h-4
 }
-

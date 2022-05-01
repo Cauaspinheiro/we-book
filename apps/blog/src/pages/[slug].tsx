@@ -1,11 +1,14 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
-import Topbar from '../components/topbar'
 import { markdownToHtml } from '../config/markdown.config'
 import { Post } from '../domain/post'
 import { api } from '../services/api'
 import styles from '../styles/pages/post.module.css'
 import { NextSeo } from 'next-seo'
 import { useEffect } from 'react'
+import PageContainer from '../components/page-container'
+import { ArrowLeftIcon } from '@heroicons/react/solid'
+import { PrimaryButton } from '../components/primary-button'
+import { useRouter } from 'next/router'
 
 export interface PostPageProps {
   post: Post
@@ -13,6 +16,10 @@ export interface PostPageProps {
 }
 
 const PostPage: NextPage<PostPageProps> = ({ post, html }) => {
+  const router = useRouter()
+
+  const handleGoBack = () => router.back()
+
   useEffect(() => {
     const view = async () => {
       try {
@@ -24,87 +31,64 @@ const PostPage: NextPage<PostPageProps> = ({ post, html }) => {
   }, [post.id])
 
   return (
-    <div className={styles.post_page_container}>
+    <PageContainer>
       <NextSeo
         title={`${post.title} - WeBook`}
         description={post.description}
       />
 
-      <Topbar />
-
       <div className={styles.post_container}>
-        <div>
-          <h1 className={styles.post_title}>{post.title}</h1>
+        <div className={styles.post_heading_container}>
+          <h1 className={styles.post_heading_title}>{post.title}</h1>
 
-          <p className={styles.post_description}>{post.description}</p>
+          <h2 className={styles.post_heading_subtitle}>{post.description}</h2>
 
-          <p className={styles.post_created_at}>
-            {new Date(post.createdAt).toLocaleString('PT-BR', {
-              timeStyle: 'short',
-              hour12: false,
-              dateStyle: 'long',
-            })}
-          </p>
-        </div>
+          <div className={styles.post_heading_data_container}>
+            <div className={styles.post_heading_creator_container}>
+              <span className={styles.post_heading_section_heading}>Autor</span>
 
-        <div className={styles.post_creators_container}>
-          <div
-            className={`${styles.post_publisher_container} ${
-              !post.contributors.length
-                ? styles.post_publisher_centered
-                : undefined
-            }`}
-          >
-            <h3 className={styles.post_creators_heading}>Criado por:</h3>
+              <h3 className={styles.post_heading_creator}>
+                {post.publisher.name}
+              </h3>
+            </div>
 
-            <span className={styles.post_creators_title}>
-              {post.publisher.name}
-            </span>
-
-            <span className={styles.post_creators_heading}>
-              Usuário desde:{' '}
-              <span className={styles.post_creators_created_at}>
-                {new Date(post.publisher.createdAt).toLocaleString('PT-BR', {
-                  year: 'numeric',
-                  month: 'long',
-                })}
-              </span>
-            </span>
+            <h3 className={styles.post_heading_created_at}>
+              {new Date(post.createdAt).toLocaleString('PT-BR', {
+                timeStyle: 'short',
+                hour12: false,
+                dateStyle: 'long',
+              })}
+            </h3>
           </div>
 
-          {!!post.contributors.length && (
+          {post.contributors.length > 0 && (
             <div className={styles.post_contributors_container}>
-              {post.contributors.map((v, index) => (
-                <div key={v.id} className={styles.post_publisher_container}>
-                  <h3 className={styles.post_creators_heading}>
-                    {!index ? 'Contribuidores:' : ''}
-                  </h3>
+              <h3 className={styles.post_heading_section_heading}>
+                Contribuidores
+              </h3>
 
-                  <span className={styles.post_creators_title}>{v.name}</span>
-
-                  <span className={styles.post_creators_heading}>
-                    Usuário desde:{' '}
-                    <span className={styles.post_creators_created_at}>
-                      {new Date(v.createdAt).toLocaleString('PT-BR', {
-                        year: 'numeric',
-                        month: 'long',
-                      })}
-                    </span>
-                  </span>
-                </div>
-              ))}
+              <div className={styles.post_contributors}>
+                {post.contributors.map((v) => (
+                  <p key={v.id}>{v.name}</p>
+                ))}
+              </div>
             </div>
           )}
         </div>
 
-        <hr className={styles.post_divider} />
-
         <article
-          className={styles.post_content_container}
+          className={styles.post_content}
           dangerouslySetInnerHTML={{ __html: html }}
-        ></article>
+        />
+
+        <div className={styles.post_footer_container}>
+          <PrimaryButton onClick={handleGoBack}>
+            <ArrowLeftIcon className={styles.post_footer_icon} />
+            Voltar
+          </PrimaryButton>
+        </div>
       </div>
-    </div>
+    </PageContainer>
   )
 }
 

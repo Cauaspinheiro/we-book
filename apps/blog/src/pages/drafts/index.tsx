@@ -1,10 +1,9 @@
 import { GetServerSideProps, NextPage } from 'next'
-import Topbar from '../../components/topbar'
 import { DraftsTimeline } from '../../components/drafts-timeline'
 
-import styles from '../../styles/pages/drafts/drafts.module.css'
 import { Draft } from '../../domain/draft'
 import { api } from '../../services/api'
+import PageContainer from '../../components/page-container'
 
 export interface DraftsPageProps {
   drafts: Draft[]
@@ -12,13 +11,9 @@ export interface DraftsPageProps {
 
 const DraftsPage: NextPage<DraftsPageProps> = ({ drafts }) => {
   return (
-    <div className={styles.drafts_container}>
-      <Topbar />
-
-      <div className={styles.drafts_content_container}>
-        <DraftsTimeline initialDrafts={drafts} />
-      </div>
-    </div>
+    <PageContainer>
+      <DraftsTimeline initialData={drafts} />
+    </PageContainer>
   )
 }
 
