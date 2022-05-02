@@ -1,0 +1,11 @@
+.internal_error_container {
+  @apply w-full h-full flex justify-center items-center py-10 flex-col gap-8
+}
+
+.internal_error_title {
+  @apply text-xl text-zinc-200 font-title
+}
+
+.internal_error_subtitle {
+  @apply text-lg text-zinc-400 font-title
+}

@@ -1,0 +1,4 @@
+.profile_header_container {
+  @apply w-full py-6 lg:py-10 flex items-center border-b border-b-zinc-700 
+  text-zinc-100 font-semibold text-xl md:text-3xl font-title
+}

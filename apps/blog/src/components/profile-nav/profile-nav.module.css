@@ -1,0 +1,12 @@
+.profile_nav_container {
+  @apply flex flex-col w-32 sm:w-40 md:w-52;
+}
+
+.profile_nav_container_item {
+  @apply bg-neutral-900 px-2 py-3 rounded font-body text-zinc-300
+  hover:bg-neutral-800;
+}
+
+.profile_nav_container_item_active {
+  @apply text-zinc-100 font-medium;
+}

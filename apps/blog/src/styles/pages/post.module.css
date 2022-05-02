@@ -47,7 +47,7 @@
 }
 
 .post_footer_container {
-  @apply w-max
+  @apply w-max print:hidden
 }
 
 .post_footer_icon {
