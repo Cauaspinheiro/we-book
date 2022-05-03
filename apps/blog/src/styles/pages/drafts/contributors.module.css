@@ -1,0 +1,30 @@
+.contributors_container {
+  @apply flex flex-col gap-6 w-full md:max-w-2xl
+}
+
+.add_contributor_container {
+  @apply flex gap-3 items-end;
+}
+
+.add_contributor_button {
+  @apply aspect-square p-0 h-11
+}
+
+.add_contributor_icon {
+  @apply w-6 h-6
+}
+
+.contributors_list_container {
+  @apply flex flex-col gap-px border border-zinc-700 bg-zinc-700 rounded
+}
+
+.contributors_list_item {
+  @apply w-full bg-neutral-900 px-4 flex justify-between items-center py-2
+  text-zinc-200 font-body font-medium
+}
+
+.contributors_list_item_button {
+  @apply text-zinc-400 flex gap-2 text-sm font-body items-center px-4 py-2
+  rounded
+  hover:bg-zinc-800 hover:text-red-500
+}

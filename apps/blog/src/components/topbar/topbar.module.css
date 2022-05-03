@@ -1,5 +1,5 @@
 .topbar_container {
-  @apply w-full sticky top-0 bg-neutral-900 border-b-zinc-700 border-b
+  @apply w-full sticky top-0 z-50 bg-neutral-900 border-b-zinc-700 border-b
   px-4;
 }
 

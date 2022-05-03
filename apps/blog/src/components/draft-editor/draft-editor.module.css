@@ -1,0 +1,7 @@
+.draft_editor_container {
+  @apply flex flex-col gap-6 w-full;
+}
+
+.draft_editor_header {
+  @apply flex sm:flex-row flex-col gap-6 sm:gap-4 w-full items-end;
+}

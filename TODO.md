@@ -17,8 +17,8 @@
 - [x] Página de draft
   - [x] Criar draft
   - [x] Editar draft
-  - [ ] Remover informações de publicar e adicionar writer em página de contributor
-- [ ] Customizar toda a UI do supertokens (páginas de auth e emails)
+  - [x] Remover informações de publicar e adicionar writer em página de contributor
+- [x] Customizar toda a UI do supertokens (páginas de auth e emails)
 
 ### Backend
 
@@ -44,10 +44,9 @@
 
 ## Melhorias (opcionais)
 
-- [ ] Melhoria de UI?
+- [x] Melhoria de UI?
   - [ ] Favicon
-  - [ ] Adicionar confirmação mais bonita do que a nativa na hora de deletar
-  - [ ] Melhoria de styles e componentes
+  - [x] Melhoria de styles e componentes
 - [ ] Recovery de dead-lettering (principalmente para messages de users que não existiam)
 
 - [ ] Pagination em home e posts

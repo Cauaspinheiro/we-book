@@ -3,11 +3,12 @@
 }
 
 .input_label {
-  @apply text-sm font-semibold text-slate-200;
+  @apply text-zinc-400 font-body font-medium text-sm;
 }
 
 .input {
-  @apply w-full px-3 py-2 mt-1 text-sm border-2 border-gray-500 rounded bg-slate-700 text-white;
+  @apply w-full px-3 py-2 mt-1 border-2 border-zinc-700 rounded bg-zinc-800 
+  text-white;
 }
 
 .text_area_resize_none {

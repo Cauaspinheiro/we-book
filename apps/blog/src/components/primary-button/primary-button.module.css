@@ -1,5 +1,5 @@
 .primary_button {
   @apply flex items-center px-6 h-9 gap-1 rounded-md bg-blue-600 cursor-pointer
-  font-semibold font-title text-white 
-  transition-colors hover:bg-blue-700  
+  font-semibold font-title text-white justify-center
+  transition-colors hover:bg-blue-700 min-w-max
 }

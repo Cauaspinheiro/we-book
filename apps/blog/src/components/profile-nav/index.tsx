@@ -3,19 +3,19 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { FC } from 'react'
 
-import styles from './profile-nav.module.css'
+import styles from '../../styles/components/sidebar.module.css'
 
 export const ProfileNav: FC = () => {
   const { pathname: link } = useRouter()
 
   const getLinkClassNames = (url: string) => {
-    return classNames(styles.profile_nav_container_item, {
-      [styles.profile_nav_container_item_active]: link === url,
+    return classNames(styles.sidebar_container_item, {
+      [styles.sidebar_container_item_active]: link === url,
     })
   }
 
   return (
-    <aside className={styles.profile_nav_container}>
+    <aside className={styles.sidebar_container}>
       <Link href="/me">
         <a className={getLinkClassNames('/me')}>Seu dados</a>
       </Link>

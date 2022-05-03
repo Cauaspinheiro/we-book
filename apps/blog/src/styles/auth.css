@@ -1,0 +1,45 @@
+#supertokens-root{
+  @apply bg-neutral-900 w-full min-h-screen flex items-center content-center;
+}
+
+div[data-supertokens=container] {
+  @apply text-white m-0 mx-auto shadow-none bg-transparent;
+}
+
+div[data-supertokens=headerTitle] {
+  @apply font-title font-bold text-xl text-white;
+}
+
+div[data-supertokens=headerSubtitle], div[data-supertokens=secondaryText] {
+  @apply font-body font-medium text-zinc-200;
+}
+
+div[data-supertokens=divider] {
+  @apply border-b-zinc-700
+}
+
+div[data-supertokens=label] {
+  @apply text-zinc-400 font-body font-medium text-sm;
+}
+
+div[data-supertokens=inputContainer] {
+  
+}
+
+div[data-supertokens="inputWrapper inputError"] {
+  @apply w-full border-2 border-zinc-700 rounded !bg-zinc-800 
+  text-white focus-within:border-blue-600 focus-within:shadow-blue-800 focus-within:shadow; 
+}
+
+input[data-supertokens="input"] {
+  @apply focus:ring-0 text-white font-sans tracking-normal;
+}
+
+a[data-supertokens=superTokensBranding] {
+  @apply rounded bg-zinc-800;
+}
+
+button[data-supertokens=button] {
+  @apply font-semibold font-title bg-blue-600 border-none
+  focus:outline focus:outline-2 focus:outline-blue-500 transition-none
+}

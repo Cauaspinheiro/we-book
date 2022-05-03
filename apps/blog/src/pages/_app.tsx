@@ -8,8 +8,10 @@ import { frontendConfig } from '../config/auth.config'
 import { queryClient } from '../services/query'
 import { useToastStore } from '../stores/toast.store'
 import { DefaultSeo } from 'next-seo'
-import '../styles/globals.css'
 import dynamic from 'next/dynamic'
+
+import '../styles/globals.css'
+import '../styles/auth.css'
 
 if (typeof window !== 'undefined') {
   // we only want to call this init function on the frontend, so we check typeof window !== 'undefined'

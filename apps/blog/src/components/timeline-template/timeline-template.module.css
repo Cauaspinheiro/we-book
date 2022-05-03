@@ -7,7 +7,7 @@
 }
 
 .timeline_item_actions_container {
-  @apply flex items-center gap-10
+  @apply flex items-center sm:gap-10 gap-6
 }
 
 .timeline_item_title {
