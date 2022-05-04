@@ -3,10 +3,11 @@ import {
   CanActivate,
   ExecutionContext,
   UnauthorizedException,
-  NotFoundException,
+  InternalServerErrorException,
 } from '@nestjs/common'
 import { RequestWithWriter } from 'src/@types/request'
 import { GetWriter } from 'src/writers/use-cases/get-writer'
+import { RecoverProfile } from '../../use-cases/recover-profile'
 import { SessionGuard } from './session.guard'
 
 @Injectable()
@@ -14,6 +15,7 @@ export class WriterGuard implements CanActivate {
   constructor(
     private getWriter: GetWriter,
     private sessionGuard: SessionGuard,
+    private recoverProfile: RecoverProfile,
   ) {}
 
   async canActivate(context: ExecutionContext) {
@@ -31,12 +33,14 @@ export class WriterGuard implements CanActivate {
       id = req.id
     }
 
-    const writer = await this.getWriter.run(id)
+    let writer = await this.getWriter.run(id)
 
     if (!writer) {
-      // TODO: call auth service to get the writer
+      writer = await this.recoverProfile.run(id)
 
-      throw new NotFoundException('Writer not found')
+      if (!writer) {
+        throw new InternalServerErrorException('Writer not found')
+      }
     }
 
     req.writer = writer

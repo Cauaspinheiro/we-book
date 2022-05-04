@@ -45,7 +45,7 @@
 ## Melhorias (opcionais)
 
 - [x] Melhoria de UI?
-  - [ ] Favicon
+  - [x] Favicon
   - [x] Melhoria de styles e componentes
 - [ ] Recovery de dead-lettering (principalmente para messages de users que não existiam)
 

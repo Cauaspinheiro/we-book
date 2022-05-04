@@ -4,7 +4,9 @@ import { UsersRepository } from './infra/users.repository'
 import { CreateUser } from './use-cases/create-user'
 import { GetUser } from './use-cases/get-user'
 import { GetUserWithMetadata } from './use-cases/get-user-with-metadata'
+import { RecoverProfile } from './use-cases/recover-profile'
 import { ValidateSession } from './use-cases/validate-session'
+import { UsersRMQGateway } from './users-rmq.gateway'
 import { UsersController } from './users.controller'
 import { UsersEvents } from './users.events'
 
@@ -17,7 +19,9 @@ import { UsersEvents } from './users.events'
     GetUser,
     SessionGuard,
     GetUserWithMetadata,
+    RecoverProfile,
+    UsersRMQGateway,
   ],
-  exports: [ValidateSession, GetUser, SessionGuard],
+  exports: [ValidateSession, GetUser, SessionGuard, RecoverProfile],
 })
 export class UsersModule {}

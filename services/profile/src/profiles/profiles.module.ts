@@ -9,9 +9,10 @@ import { ProfilesEvents } from './profiles.events'
 import { ProfilesRMQGateway } from './profiles-rmq.gateway'
 import { AddNewPostCount } from './use-cases/add-new-post-count'
 import { AddNewPostViewCount } from './use-cases/add-new-post-view-count'
+import { ProfilesMessages } from './profiles.messages'
 
 @Module({
-  controllers: [ProfilesEvents, ProfilesController],
+  controllers: [ProfilesEvents, ProfilesController, ProfilesMessages],
   providers: [
     ProfilesRepository,
     CreateProfile,

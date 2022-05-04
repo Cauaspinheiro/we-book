@@ -7,7 +7,7 @@ export class CreateWriter {
   constructor(private writersRepository: WritersRepository) {}
 
   async run(data: NewWriterDTO) {
-    await this.writersRepository.create({
+    return await this.writersRepository.create({
       id: data.id,
       email: data.email,
       createdAt: new Date(data.createdAt),
