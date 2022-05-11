@@ -68,7 +68,7 @@ You can run this API in you local machine by following the [Installation](#const
 
 You can download the API endpoints collection by clicking in the button below:
 
-[![Run in Insomnia](https://insomnia.rest/images/run.svg)]()
+[![Run in Insomnia](https://insomnia.rest/images/run.svg)](https://insomnia.rest/run/?label=WeBook%20API&uri=https%3A%2F%2Fres.cloudinary.com%2Fdpkgd6rhb%2Fraw%2Fupload%2Fv1652308987%2Fgithub%2Fwe-book%2Fwebook-insomnia_eyjjsn.json)
 
 ## :construction_worker: Installation
 
