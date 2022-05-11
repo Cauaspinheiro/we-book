@@ -2,8 +2,6 @@
 
 # WeBook - Auth service
 
-This is the auth service
-
 ## 📄 Overview
 
 WeBook is an open-source blog that focuses on creating posts in a collaborative and open way, where anyone can create a post and invite other users to contribute.
