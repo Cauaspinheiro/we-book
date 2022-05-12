@@ -116,7 +116,7 @@ export const frontendConfig = (): SuperTokensConfig => {
         },
         useShadowDom: false,
         emailVerificationFeature: {
-          mode: process.env.NODE_ENV === 'production' ? 'REQUIRED' : 'OFF',
+          mode: 'OFF',
         },
         signInAndUpFeature: {
           signUpForm: {
