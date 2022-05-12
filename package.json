@@ -1,6 +1,6 @@
 {
-  "name": "turborepo-basic-shared",
-  "version": "0.0.0",
+  "name": "we-book",
+  "version": "1.0.0",
   "private": true,
   "workspaces": [
     "apps/*",
@@ -32,8 +32,5 @@
     "npm": ">=7.0.0",
     "node": ">=14.0.0"
   },
-  "packageManager": "yarn@1.22.18",
-  "dependencies": {
-    "yarn": "^1.22.18"
-  }
+  "packageManager": "yarn@1.22.18"
 }
